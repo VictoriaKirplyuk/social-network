@@ -1,0 +1,15 @@
+.profile {
+    margin-top: 5rem;
+    min-width: 60vw;
+    min-height: 80vh;
+    border: 1px solid;
+}
+
+.generalDescription {
+    display: flex;
+    border: 1px solid red;
+}
+
+.info {
+    width: 70%;
+}
