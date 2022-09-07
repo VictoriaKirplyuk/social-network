@@ -4,8 +4,8 @@ export enum RouteNames {
   PROFILE = '/profile/*',
   NOT_FOUND = '/*',
   REGISTRATION = '/registration',
+  REGISTRATION_CODE = '/registration/code',
   REGISTRATION_CONFIRM = '/registration/confirm',
-  REGISTRATION_COMPLETE = '/registration/complete',
 }
 
 export enum RequestStatus {

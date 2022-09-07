@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import { defaultRouter } from '../router';
+import { defaultRouter } from '../../router';
 
 const AppRouter: FC = () => {
   return (

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Layout } from 'antd';
 
 import Alert from '../../components/Alert/Alert';
-import AppRouter from '../../components/AppRouter';
+import AppRouter from '../../components/AppRouter/AppRouter';
 import './App.css';
 
 const { Header, Content, Footer } = Layout;

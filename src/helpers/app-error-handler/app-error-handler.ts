@@ -4,7 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import { changeError, changeStatus } from '../../app/2-bll/appReducer';
 import { RequestStatus } from '../../enums';
-import { ResponseError } from '../../pages/auth/registration/3-dal/types/registration-api-types';
+import { IResponseError } from '../../pages/auth/registration/3-dal/types/registration-api-types';
 
 export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<any, any, AnyAction>): void => {
   const serverCodeError = 500;
@@ -12,7 +12,7 @@ export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<any, any, An
 
   if (axios.isAxiosError(e) && e.response) {
     if (e.response.status < serverCodeError) {
-      const error = (e.response?.data as ResponseError).fields;
+      const error = (e.response?.data as IResponseError).fields;
 
       if (error) {
         errorMessage = `${error[0]?.field}: ${error[0]?.code}`;

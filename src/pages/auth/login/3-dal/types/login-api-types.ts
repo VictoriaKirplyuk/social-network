@@ -1,10 +1,10 @@
-export type LoginResponse = LoginResponseSuccess & LoginResponseError;
+export type LoginResponse = ILoginResponseSuccess & ILoginResponseError;
 
-export type LoginResponseSuccess = {
+export interface ILoginResponseSuccess {
   jwtToken: string;
-};
+}
 
-export type LoginResponseError = {
+export interface ILoginResponseError {
   code?: string;
   message?: string;
-};
+}

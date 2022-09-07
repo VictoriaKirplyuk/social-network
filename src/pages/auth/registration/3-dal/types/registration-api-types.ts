@@ -1,15 +1,15 @@
-export type AuthResponse = AuthResponseSuccess & ResponseError;
-export type ResponseUserData = UserDataResponseSuccess & ResponseError;
+export type AuthResponse = IAuthResponseSuccess & IResponseError;
+export type ResponseUserData = IUserDataResponseSuccess & IResponseError;
 
-type AuthResponseSuccess = {
+interface IAuthResponseSuccess {
   status?: string;
   continuationCode?: string | undefined;
-};
+}
 
-type UserDataResponseSuccess = {
+interface IUserDataResponseSuccess {
   email: string;
   username: string;
-  avatar: Avatar;
+  avatar: IAvatar;
   images: string[];
   firstName: string;
   middleName: string;
@@ -17,28 +17,28 @@ type UserDataResponseSuccess = {
   birthDate: string;
   createAt: string;
   updateAt: string;
-};
+}
 
-type Avatar = {
+interface IAvatar {
   mimeType: string;
   height: number;
   width: number;
   dataSize: string;
   createAt: string; // Date
-};
+}
 
-export type ResponseError = {
+export interface IResponseError {
   code?: string;
-  fields?: FieldsError[] | undefined;
+  fields?: IFieldsError[] | undefined;
   message?: string;
-};
+}
 
-type FieldsError = {
+interface IFieldsError {
   field?: string;
   code?: string;
-};
+}
 
-export type UserData = {
+export interface IUserData {
   password: string;
   username: string;
   firstName: string;
@@ -46,4 +46,4 @@ export type UserData = {
   secondName: string;
   gender: string;
   birthDate: string; // Date
-};
+}

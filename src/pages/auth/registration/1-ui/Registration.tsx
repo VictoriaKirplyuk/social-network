@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import icon from '../../../../assets/icons/icon.jpg';
 import { RequestStatus, RouteNames, StepAuth } from '../../../../enums';
 import { registrationSchema } from '../../../../helpers/validators/email-or-phone-validators';
+import { registrationFieldFormatter } from '../../../../helpers/validators/registration-fields-validators';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
 import gS from '../../auth.module.css';
 import { registration } from '../2-bll/thunk/registration-thunk';
@@ -27,12 +28,12 @@ const Registration: FC = () => {
     validationSchema: registrationSchema,
     validateOnBlur: true,
     onSubmit: values => {
-      dispatch(registration(values.emailOrPhone));
+      dispatch(registration(registrationFieldFormatter(values.emailOrPhone)));
     },
   });
 
   if (stepAuth === StepAuth.CONFIRMATION) {
-    return <Navigate to={RouteNames.REGISTRATION_CONFIRM} />;
+    return <Navigate to={RouteNames.REGISTRATION_CODE} />;
   }
 
   return (

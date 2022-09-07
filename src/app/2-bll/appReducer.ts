@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RequestStatus } from '../../enums';
 
-export type AppState = {
+interface IState {
   status: RequestStatus;
   error: string | undefined;
   isInitialized: boolean;
-};
+}
 
-const initialState: AppState = {
+const initialState: IState = {
   status: RequestStatus.IDLE, // происходит ли взаимодействие с сервером
   error: '', // глобальная ошибка
   isInitialized: false,

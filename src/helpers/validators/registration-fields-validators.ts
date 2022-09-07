@@ -3,6 +3,10 @@ import * as yup from 'yup';
 const maxPasswordSymbol = 11;
 const maxNameSymbol = 15;
 
+export const registrationFieldFormatter = (field: string): string => {
+  return field.replace('+', '');
+};
+
 export const registrationCompleteSchema = yup.object().shape({
   password: yup.string().max(maxPasswordSymbol, 'No more than 11 characters').required('Required field'),
   confirmPassword: yup
