@@ -85,7 +85,7 @@ const Login: FC = () => {
           </Checkbox>
         </div>
         <div className={gS.subLink}>
-          <a href="/">Forgot your password?</a>
+          <a href={RouteNames.RESET_PASSWORD}>Forgot your password?</a>
         </div>
         <Button type="primary" htmlType="submit" className={gS.btn} disabled={!isValid} loading={isLoading}>
           Sign in

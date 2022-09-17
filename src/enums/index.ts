@@ -4,8 +4,11 @@ export enum RouteNames {
   PROFILE = '/profile/*',
   NOT_FOUND = '/*',
   REGISTRATION = '/registration',
-  REGISTRATION_CODE = '/registration/code',
-  REGISTRATION_CONFIRM = '/registration/confirm',
+  REGISTRATION_CONFIRM = '/registration/confirm/code',
+  REGISTRATION_COMPLETE = '/registration/confirm', // complete
+  RESET_PASSWORD = '/password/reset',
+  RESET_PASSWORD_CONFIRM_CODE = '/password/reset/confirm/code',
+  RESET_PASSWORD_COMPLETE = '/password/reset/confirm', // complete
 }
 
 export enum RequestStatus {
@@ -16,7 +19,14 @@ export enum RequestStatus {
 }
 
 export enum StepAuth {
-  REGISTRATION = 'registration',
+  IDLE = 'idle',
+  CONFIRMATION = 'confirmation',
+  COMPLETE = 'complete',
+  SUCCEEDED = 'succeeded',
+}
+
+export enum StepResetPassword {
+  IDLE = 'idle',
   CONFIRMATION = 'confirmation',
   COMPLETE = 'complete',
   SUCCEEDED = 'succeeded',

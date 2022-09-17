@@ -4,7 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import { changeError, changeStatus } from '../../app/2-bll/appReducer';
 import { RequestStatus } from '../../enums';
-import { IResponseError } from '../../pages/auth/registration/3-dal/types/registration-api-types';
+import { IResponseError } from '../../types/api-types/error-types/error-types';
 
 export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<any, any, AnyAction>): void => {
   const serverCodeError = 500;

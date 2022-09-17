@@ -13,7 +13,7 @@ import { registrationComplete, registrationConfirmLink } from '../2-bll/thunk/re
 
 import { IRegistrationComplete } from './types/registration-complete-types';
 
-const RegistrationConfirm: FC = () => {
+const RegistrationComplete: FC = () => {
   const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
   const stepAuth = useAppSelector(state => state.auth.stepAuth);
   const dispatch = useAppDispatch();
@@ -191,4 +191,4 @@ const RegistrationConfirm: FC = () => {
   );
 };
 
-export default RegistrationConfirm;
+export default RegistrationComplete;

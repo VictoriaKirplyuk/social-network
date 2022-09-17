@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import { appReducer } from '../app/2-bll/appReducer';
 import { authReducer } from '../pages/auth/registration/2-bll/authReducer';
+import { passwordReducer } from '../pages/auth/reset-password/2-bll/passwordReducer';
 
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
+  password: passwordReducer,
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

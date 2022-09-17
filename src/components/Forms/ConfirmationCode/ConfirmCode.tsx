@@ -1,43 +1,49 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
+import { AsyncThunk } from '@reduxjs/toolkit';
 import { Button, Input } from 'antd';
 import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
-import icon from '../../../../assets/icons/icon.jpg';
-import { RequestStatus, RouteNames, StepAuth } from '../../../../enums';
-import { timeFormatter } from '../../../../helpers/time-formatter/time-formatter';
-import { codeSchema } from '../../../../helpers/validators/code-validator';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
-import gS from '../../auth.module.css';
-import { registrationConfirmCode, resendRegistration } from '../2-bll/thunk/registration-thunk';
+import icon from '../../../assets/icons/icon.jpg';
+import { RequestStatus, RouteNames, StepAuth, StepResetPassword } from '../../../enums';
+import { timeFormatter } from '../../../helpers/time-formatter/time-formatter';
+import { confirmCodeSchema } from '../../../helpers/validators/confirm-code-validator';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
+import gS from '../../../pages/auth/auth.module.css';
+import { resendRegistration } from '../../../pages/auth/registration/2-bll/thunk/registration-thunk';
 
-import { IRegistrationConfirm } from './types/registration-confirm-types';
+import { IConfirmCode } from './types/confirm-code-types';
 
 const startSeconds = 90;
 
-const RegistrationCode: FC = () => {
+export interface IConfirmCodeProps {
+  type: 'registration' | 'reset-password';
+  stepToCheck: StepAuth | StepResetPassword;
+  onSubmit: AsyncThunk<void, string, {}>;
+}
+
+const ConfirmCode: FC<IConfirmCodeProps> = ({ type, stepToCheck, onSubmit }) => {
   const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
-  const stepAuth = useAppSelector(state => state.auth.stepAuth);
   const dispatch = useAppDispatch();
 
   const [seconds, setSeconds] = useState<number>(startSeconds);
   const timeToCodeRequest = timeFormatter(seconds);
-  const initialValues: IRegistrationConfirm = {
+  const initialValues: IConfirmCode = {
     code: '',
   };
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur, isValid } = useFormik({
     initialValues,
     validateOnBlur: true,
-    validationSchema: codeSchema,
+    validationSchema: confirmCodeSchema,
     onSubmit: values => {
-      dispatch(registrationConfirmCode(values.code));
+      dispatch(onSubmit(values.code));
     },
   });
 
   const fetchCode = (): void => {
-    dispatch(resendRegistration());
+    dispatch(resendRegistration()); // прокинуть в пропсы
     setSeconds(startSeconds);
   };
 
@@ -49,8 +55,12 @@ const RegistrationCode: FC = () => {
     }
   }, [seconds]);
 
-  if (stepAuth === StepAuth.COMPLETE) {
+  if (type === 'registration' && stepToCheck === StepAuth.COMPLETE) {
     return <Navigate to={RouteNames.REGISTRATION_CONFIRM} />;
+  }
+  if (type === 'reset-password' && stepToCheck === StepResetPassword.COMPLETE) {
+    // добавить форму
+    console.log('new form');
   }
 
   return (
@@ -85,4 +95,4 @@ const RegistrationCode: FC = () => {
   );
 };
 
-export default RegistrationCode;
+export default ConfirmCode;

@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StepAuth } from '../../../../enums';
 
 const initialState: IAuth = {
-  stepAuth: StepAuth.REGISTRATION,
+  stepAuth: StepAuth.IDLE,
 };
 
 interface IAuth {
