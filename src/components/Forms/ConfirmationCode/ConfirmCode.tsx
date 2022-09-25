@@ -56,7 +56,7 @@ const ConfirmCode: FC<IConfirmCodeProps> = ({ type, stepToCheck, onSubmit }) => 
   }, [seconds]);
 
   if (type === 'registration' && stepToCheck === StepAuth.COMPLETE) {
-    return <Navigate to={RouteNames.REGISTRATION_CONFIRM} />;
+    return <Navigate to={RouteNames.REGISTRATION_COMPLETE} />;
   }
   if (type === 'reset-password' && stepToCheck === StepResetPassword.COMPLETE) {
     // добавить форму

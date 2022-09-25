@@ -69,7 +69,7 @@ export const registrationConfirmLink = createAsyncThunk('auth/registrationConfir
     if (response.continuationCode) {
       sessionStorage.setItem('continuationCode', response.continuationCode);
     }
-
+    thunkAPI.dispatch(changeStepAuth({ stepAuth: StepAuth.COMPLETE }));
     thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
   } catch (e) {
     appErrorHandler(e, thunkAPI.dispatch);

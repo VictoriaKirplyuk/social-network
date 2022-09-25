@@ -10,12 +10,16 @@ export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<any, any, An
   const serverCodeError = 500;
   let errorMessage;
 
+  console.dir(e);
+
   if (axios.isAxiosError(e) && e.response) {
     if (e.response.status < serverCodeError) {
       const error = (e.response?.data as IResponseError).fields;
 
       if (error) {
         errorMessage = `${error[0]?.field}: ${error[0]?.code}`;
+      } else {
+        errorMessage = `${e.message} ${e.code}`;
       }
     } else {
       errorMessage = `${e.message}: ${e.code}`;

@@ -18,7 +18,7 @@
     min-height: 50rem;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .app-footer {

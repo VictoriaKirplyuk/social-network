@@ -1,0 +1,16 @@
+.navItem {
+    padding: 5px;
+    display: flex;
+}
+
+.navItem:hover {
+    background-color: #e6e8ea;
+}
+
+.navIcon {
+    padding: 0 5px;
+}
+
+.navTitle {
+    padding: 0 5px;
+}
