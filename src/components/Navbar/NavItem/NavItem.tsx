@@ -1,18 +1,21 @@
 import React, { FC } from 'react';
 
+import { NavLink } from 'react-router-dom';
+
 import s from './NavItem.module.css';
 
 interface INavItem {
   title: string;
-  icon: React.ReactNode;
+  path: string;
+  icon?: React.ReactNode;
 }
 
-const NavItem: FC<INavItem> = ({ title, icon }) => {
+const NavItem: FC<INavItem> = ({ title, icon, path }) => {
   return (
-    <div className={s.navItem}>
-      <div className={s.navIcon}>{icon}</div>
-      <div className={s.navTitle}>{title}</div>
-    </div>
+    <NavLink to={path} className={s.navItem}>
+      {icon && <div className={s.navItemIcon}>{icon}</div>}
+      <div className={s.navItemTitle}>{title}</div>
+    </NavLink>
   );
 };
 

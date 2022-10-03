@@ -2,6 +2,8 @@ export enum RouteNames {
   DEFAULT = '/',
   LOGIN = '/login',
   PROFILE = '/profile/*',
+  CHATS = '/chats',
+  MESSAGES = '/messages/*',
   NOT_FOUND = '/*',
   REGISTRATION = '/registration',
   REGISTRATION_CONFIRM = '/registration/confirm/code',

@@ -1,12 +1,15 @@
 import React, { FC } from 'react';
 
 import { UserOutlined } from '@ant-design/icons';
-import { Card } from 'antd';
 import Avatar from 'antd/es/avatar/avatar';
+
 // import { Navigate } from 'react-router-dom';
 //
 // import { RouteNames } from '../../../enums';
 // import { useAppSelector } from '../../../hooks/redux-hooks';
+import gS from '../../../common/styles/styles.module.css';
+import Button from '../../../components/Button/Button';
+import pS from '../../Pages.module.css';
 
 import s from './Profile.module.css';
 
@@ -18,25 +21,26 @@ const Profile: FC = () => {
   // }
 
   return (
-    <div className={s.profile}>
-      <Card title={<Avatar size={150} icon={<UserOutlined />} />}>
-        <p>dfdf</p>
-        <p>dfdf</p>
-      </Card>
+    <div className={pS.pageContent}>
+      <div className={gS.block}>
+        <div className={s.profileInfo}>
+          <Avatar size={140} icon={<UserOutlined />} />
+          <div className={s.generalInfo}>
+            <div>
+              <span className={`${gS.userInfoField} ${gS.importantInfoField}`}>Hiroko</span>
+              <span className={`${gS.userInfoField} ${gS.importantInfoField}`}>Shingo</span>
+              <span className={`${gS.userInfoField} ${gS.importantInfoField}`}>Hamasaki</span>
+            </div>
+            <div className={gS.userInfoField}>Username</div>
+            <div className={gS.userInfoFieldName}>Birth date:</div>
+          </div>
+        </div>
+        <div className={gS.otherInfo}>
+          <Button title="Show details" />
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Profile;
-
-// <div className={s.generalDescription}>
-//         <Avatar size={125} icon={<UserOutlined />} />
-//         <div className={s.info}>
-//           <div className={s.name}>
-//             <div>Last name</div>
-//             <div>Middle name</div>
-//             <div>Second name</div>
-//           </div>
-//         </div>
-//       </div>
-//       <div className={s.AdditionalInfo}>Additional Information</div>

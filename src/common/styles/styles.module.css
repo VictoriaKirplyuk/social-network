@@ -1,0 +1,25 @@
+.block {
+    margin-bottom: 5px;
+    padding: 7px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.userInfoField {
+    padding: 0 3px 5px 0;
+    font-size: 1rem;
+}
+
+.userInfoFieldName {
+    color: #616162;
+    font-size: 1rem;
+}
+
+.infoField {
+    color: #616162;
+}
+
+.importantInfoField {
+    font-size: 1.4rem;
+}

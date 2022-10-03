@@ -5,12 +5,15 @@
 
 .navItem:hover {
     background-color: #e6e8ea;
+    cursor: pointer;
 }
 
-.navIcon {
+.navItemIcon {
     padding: 0 5px;
 }
 
-.navTitle {
+.navItemTitle {
     padding: 0 5px;
+    color: #616162;
+    white-space: nowrap;
 }

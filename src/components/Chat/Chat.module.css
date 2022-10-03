@@ -1,0 +1,14 @@
+.chat {
+    flex-direction: row;
+    position: relative;
+}
+
+.info {
+    padding: 5px 15px;
+}
+
+.date {
+    position: absolute;
+    right: 1rem;
+    color: #616162;
+}

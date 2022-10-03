@@ -1,0 +1,15 @@
+.btn {
+    padding: 5px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background-color: #e6e8ea;
+    cursor: pointer;
+}
+
+.btnTitle {
+    padding: 0 5px;
+    color: #616162;
+}
