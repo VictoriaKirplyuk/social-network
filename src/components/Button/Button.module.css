@@ -2,6 +2,7 @@
     padding: 5px;
     text-align: center;
     overflow: hidden;
+    color: #616162;
 }
 
 .btn:hover {
@@ -11,5 +12,4 @@
 
 .btnTitle {
     padding: 0 5px;
-    color: #616162;
 }

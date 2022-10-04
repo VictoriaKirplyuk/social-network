@@ -1,9 +1,16 @@
 .profileInfo {
     display: flex;
     padding: 10px;
-    border-bottom: 2px solid #eff2f6;
+    border-bottom: 1px solid #eff2f6;
 }
 
 .generalInfo {
     padding: 5px 15px;
+}
+
+.otherInfo {
+    border-top: 1px solid #eff2f6;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
 }

@@ -1,16 +1,18 @@
-import React, { FC } from 'react';
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 
 import s from './Button.module.css';
 
-interface IButton {
-  title: string;
-}
+type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
-const Button: FC<IButton> = ({ title }) => {
+type ButtonProps = DefaultButtonPropsType & {
+  title: string;
+};
+
+const Button: FC<ButtonProps> = ({ title, ...restProps }) => {
   return (
-    <div className={s.btn}>
-      <div className={s.btnTitle}>{title}</div>
-    </div>
+    <button type="button" className={s.btn} {...restProps}>
+      {title}
+    </button>
   );
 };
 

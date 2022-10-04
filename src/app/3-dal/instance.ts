@@ -8,8 +8,10 @@ export const instance = axios.create({
 instance.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfig => {
   const jwtToken = localStorage.getItem('jwtToken');
 
-  // eslint-disable-next-line no-param-reassign
-  config.headers!.Authorization = `Bearer ${jwtToken}`;
+  if (jwtToken) {
+    // eslint-disable-next-line no-param-reassign
+    config.headers!.Authorization = `Bearer ${JSON.parse(jwtToken)}`;
+  }
 
   return config;
 });

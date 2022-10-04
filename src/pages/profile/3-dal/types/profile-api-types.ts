@@ -3,7 +3,7 @@ import { IAvatar } from '../../../../types/api-types/user-types/user-types';
 
 export type ProfileResponse = IProfileDataResponseSuccess & IResponseError;
 
-interface IProfileDataResponseSuccess {
+export interface IProfileDataResponseSuccess {
   username: string;
   avatar: IAvatar;
   firstName: string;
