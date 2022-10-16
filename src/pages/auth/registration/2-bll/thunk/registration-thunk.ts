@@ -21,7 +21,7 @@ export const registration = createAsyncThunk('auth/registration', async (phoneOr
   }
 });
 
-export const resendRegistration = createAsyncThunk('auth/resendRegistration', async (param, thunkAPI) => {
+export const resendRegistration = createAsyncThunk('auth/resendRegistration', async (params: void, thunkAPI) => {
   thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
   try {
     const continuationCode = sessionStorage.getItem('continuationCode');

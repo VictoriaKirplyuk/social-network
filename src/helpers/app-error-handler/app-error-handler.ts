@@ -6,11 +6,9 @@ import { changeError, changeStatus } from '../../app/2-bll/appReducer';
 import { RequestStatus } from '../../enums';
 import { IResponseError } from '../../types/api-types/error-types/error-types';
 
-export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<any, any, AnyAction>): void => {
+export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<unknown, unknown, AnyAction>): void => {
   const serverCodeError = 500;
   let errorMessage;
-
-  console.dir(e);
 
   if (axios.isAxiosError(e) && e.response) {
     if (e.response.status < serverCodeError) {

@@ -11,8 +11,6 @@ export const resetPassword = createAsyncThunk('password/resetPassword', async (p
   try {
     const response = await passwordAPI.reset(phoneOrEmail);
 
-    console.log(response);
-
     sessionStorage.setItem('continuationCode', JSON.stringify(response.continuationCode));
     thunkAPI.dispatch(changeStepResetPassword({ stepResetPassword: StepResetPassword.CONFIRMATION }));
     thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
@@ -28,8 +26,6 @@ export const resetPasswordConfirmCode = createAsyncThunk('password/resetPassword
 
     if (continuationCode) {
       const response = await passwordAPI.resetConfirmCode(JSON.parse(continuationCode), manualCode);
-
-      console.log(response);
 
       sessionStorage.setItem('continuationCode', JSON.stringify(response.continuationCode));
       thunkAPI.dispatch(changeStepResetPassword({ stepResetPassword: StepResetPassword.COMPLETE }));

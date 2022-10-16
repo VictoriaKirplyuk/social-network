@@ -6,7 +6,7 @@ import { appErrorHandler } from '../../../../helpers/app-error-handler/app-error
 import { profileAPI } from '../../3-dal/profileAPI';
 import { setProfileData } from '../profileReducer';
 
-export const getProfileData = createAsyncThunk('profile/getProfileData', async (param: void, thunkAPI) => {
+export const getProfileData = createAsyncThunk('profile/getProfileData', async (params: void, thunkAPI) => {
   thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
 
   try {

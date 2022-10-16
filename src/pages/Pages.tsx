@@ -8,10 +8,11 @@ import LoadingPage from './loading-page/LoadingPage';
 
 const Pages: FC = () => {
   const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
   return isInitialized ? (
     <>
-      <Navbar />
+      {isLoggedIn && <Navbar />}
       <div className="site-layout-content">
         <AppRouter />
       </div>
