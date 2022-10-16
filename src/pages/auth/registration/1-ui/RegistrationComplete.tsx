@@ -50,7 +50,7 @@ const RegistrationComplete: FC = () => {
   }, [dispatch, searchParams]);
 
   if (stepAuth === StepAuth.SUCCEEDED) {
-    return <Navigate to={RouteNames.LOGIN} />;
+    return <Navigate to={RouteNames.PROFILE} />;
   }
 
   return (

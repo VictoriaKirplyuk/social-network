@@ -18,7 +18,7 @@ export interface IRoute {
 }
 
 export const publicRouter: IRoute[] = [
-  { path: RouteNames.DEFAULT, component: Login },
+  { path: RouteNames.DEFAULT, component: Profile },
   { path: RouteNames.LOGIN, component: Login },
   { path: RouteNames.REGISTRATION, component: Registration },
   { path: RouteNames.REGISTRATION_CONFIRM, component: RegistrationConfirmCode },

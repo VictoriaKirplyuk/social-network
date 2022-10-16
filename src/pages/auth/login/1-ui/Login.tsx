@@ -14,7 +14,7 @@ import { login } from '../2-bll/thunk/login-thunk';
 import { ILogin } from './types/login-types';
 
 const Login: FC = () => {
-  const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
   const dispatch = useAppDispatch();
 
@@ -33,7 +33,7 @@ const Login: FC = () => {
     },
   });
 
-  if (isInitialized) {
+  if (isLoggedIn) {
     return <Navigate to={RouteNames.PROFILE} />;
   }
 

@@ -1,14 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { Layout } from 'antd';
 
 import Alert from '../../components/Alert/Alert';
 import './App.css';
+import { useAppDispatch } from '../../hooks/redux-hooks';
 import Pages from '../../pages/Pages';
+import { getUser } from '../../pages/users/2-bll/thunk/user-thunk';
 
 const { Header, Content, Footer } = Layout;
 
 const App: FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUser()); // проверка инициализации
+  }, [dispatch]);
+
   return (
     <div className="app">
       <Layout className="layout">

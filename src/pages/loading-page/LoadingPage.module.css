@@ -1,0 +1,7 @@
+.loadingPage {
+    min-width: 32rem;
+    min-height: 32rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

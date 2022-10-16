@@ -13,7 +13,7 @@ import { getProfileData } from '../2-bll/thunk/profile-thunk';
 import s from './Profile.module.css';
 
 const Profile: FC = () => {
-  const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
   const { firstName, middleName, secondName, username, avatar, birthDate, city, education, relationshipStatus, workplace } = useAppSelector(
     state => state.profile,
@@ -29,7 +29,7 @@ const Profile: FC = () => {
 
   const showDetails = (): void => setIsShowDetails(!isShowDetails);
 
-  if (!isInitialized) {
+  if (!isLoggedIn) {
     return <Navigate to={RouteNames.LOGIN} />;
   }
 

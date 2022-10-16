@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { changeStatus } from '../../../../../app/2-bll/appReducer';
 import { RequestStatus, StepAuth } from '../../../../../enums';
 import { appErrorHandler } from '../../../../../helpers/app-error-handler/app-error-handler';
+import { login } from '../../../login/2-bll/thunk/login-thunk';
 import { authAPI } from '../../3-dal/authAPI';
 import { IRegistrationUserData } from '../../3-dal/types/registration-api-types';
 import { changeStepAuth } from '../authReducer';
@@ -11,8 +12,6 @@ export const registration = createAsyncThunk('auth/registration', async (phoneOr
   thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
   try {
     const response = await authAPI.registration(phoneOrEmail);
-
-    console.log(response);
 
     sessionStorage.setItem('continuationCode', JSON.stringify(response.continuationCode));
     thunkAPI.dispatch(changeStepAuth({ stepAuth: StepAuth.CONFIRMATION }));
@@ -30,8 +29,6 @@ export const resendRegistration = createAsyncThunk('auth/resendRegistration', as
     if (continuationCode) {
       const response = await authAPI.resendRegistration(JSON.parse(continuationCode));
 
-      console.log(response);
-
       sessionStorage.setItem('continuationCode', JSON.stringify(response.continuationCode));
       thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
     }
@@ -48,8 +45,6 @@ export const registrationConfirmCode = createAsyncThunk('auth/registrationConfir
     if (continuationCode) {
       const response = await authAPI.registrationConfirmCode(JSON.parse(continuationCode), manualCode);
 
-      console.log(response);
-
       sessionStorage.setItem('continuationCode', JSON.stringify(response.continuationCode));
       thunkAPI.dispatch(changeStepAuth({ stepAuth: StepAuth.COMPLETE }));
       thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
@@ -63,8 +58,6 @@ export const registrationConfirmLink = createAsyncThunk('auth/registrationConfir
   thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
   try {
     const response = await authAPI.registrationConfirmLink(linkCode);
-
-    console.log(response);
 
     if (response.continuationCode) {
       sessionStorage.setItem('continuationCode', response.continuationCode);
@@ -84,10 +77,9 @@ export const registrationComplete = createAsyncThunk('auth/registrationComplete'
     if (continuationCode) {
       const response = await authAPI.registrationComplete(JSON.parse(continuationCode), userData);
 
-      console.log(response);
+      thunkAPI.dispatch(login({ email: response.email, password: userData.password, rememberMe: false }));
 
       thunkAPI.dispatch(changeStepAuth({ stepAuth: StepAuth.SUCCEEDED }));
-      thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
     }
   } catch (e) {
     appErrorHandler(e, thunkAPI.dispatch);
