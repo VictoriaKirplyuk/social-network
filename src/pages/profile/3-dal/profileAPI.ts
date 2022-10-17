@@ -1,6 +1,5 @@
 import { instance } from '../../../app/3-dal/instance';
-
-import { IChangeAvatar, ProfileResponse } from './types/profile-api-types';
+import { IChangeAvatar, ProfileResponse } from '../../../types/api-types/profile-types/profile-types';
 
 export const profileAPI = {
   getProfile() {

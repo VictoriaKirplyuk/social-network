@@ -6,7 +6,7 @@ import Alert from '../../components/Alert/Alert';
 import './App.css';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import Pages from '../../pages/Pages';
-import { getUser } from '../../pages/users/2-bll/thunk/user-thunk';
+import { getUser } from '../../pages/users/2-bll/thunk/users-thunk';
 import { logout } from '../../utils/logout';
 
 const { Header, Content, Footer } = Layout;
@@ -28,7 +28,7 @@ const App: FC = () => {
       <Layout className="layout">
         <Header className="app-header">
           {isLoggedIn && (
-            <button type="button" className="logout" onClick={logoutHandler}>
+            <button type="button" className="logout-btn" onClick={logoutHandler}>
               Log out
             </button>
           )}

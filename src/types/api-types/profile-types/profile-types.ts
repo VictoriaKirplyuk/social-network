@@ -1,5 +1,5 @@
-import { IResponseError } from '../../../../types/api-types/error-types/error-types';
-import { IAvatar } from '../../../../types/api-types/user-types/user-types';
+import { IResponseError } from '../error-types/error-types';
+import { IAvatar } from '../user-types/user-types';
 
 export type ProfileResponse = IProfileDataResponseSuccess & IResponseError;
 

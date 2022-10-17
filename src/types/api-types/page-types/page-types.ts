@@ -5,15 +5,16 @@ export type PageResponse<T> = IPageResponseSuccess<T> & IResponseError;
 interface IPageResponseSuccess<T> {
   totalElements: number;
   totalPages: number;
-  sort: ISort;
+  sort?: ISort;
   size: 0;
   content: T[];
   number: number;
-  pageable: IPageable;
-  first: boolean;
-  numberOfElements: number;
-  last: boolean;
-  empty: boolean;
+  pageable?: IPageable;
+  first?: boolean;
+  numberOfElements?: number;
+  last?: boolean;
+  empty?: boolean;
+  hasNext: boolean;
 }
 
 interface ISort {

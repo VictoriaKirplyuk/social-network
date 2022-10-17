@@ -1,16 +1,18 @@
 export enum RouteNames {
   DEFAULT = '/',
   LOGIN = '/login',
-  PROFILE = '/profile/*',
-  CHATS = '/chats',
-  MESSAGES = '/messages/*',
-  NOT_FOUND = '/*',
   REGISTRATION = '/registration',
   REGISTRATION_CONFIRM = '/registration/confirm/code',
   REGISTRATION_COMPLETE = '/registration/confirm', // complete
   RESET_PASSWORD = '/password/reset',
   RESET_PASSWORD_CONFIRM_CODE = '/password/reset/confirm/code',
   RESET_PASSWORD_COMPLETE = '/password/reset/confirm', // complete
+  PROFILE = '/profile',
+  CURRENT_PROFILE = '/profile/:username',
+  CHATS = '/chats',
+  MESSAGES = '/messages/*',
+  USERS = '/users',
+  NOT_FOUND = '/*',
 }
 
 export enum RequestStatus {

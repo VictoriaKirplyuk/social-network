@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IProfileDataResponseSuccess } from '../3-dal/types/profile-api-types';
+import { IProfileDataResponseSuccess } from '../../../types/api-types/profile-types/profile-types';
 
 import { IAvatar, IProfile } from './types/types';
 
-const AvatarState: IAvatar = {
+const avatarState: IAvatar = {
   mimeType: '',
   height: 0,
   width: 0,
@@ -12,9 +12,9 @@ const AvatarState: IAvatar = {
   createAt: '',
 };
 
-const profileState: IProfile = {
+const initialState: IProfile = {
   username: '',
-  avatar: AvatarState,
+  avatar: avatarState,
   firstName: '',
   middleName: '',
   secondName: '',
@@ -29,8 +29,8 @@ const profileState: IProfile = {
 };
 
 const slice = createSlice({
-  name: 'app/profile',
-  initialState: profileState,
+  name: 'profile',
+  initialState,
   reducers: {
     setProfileData: (state, action: PayloadAction<IProfileDataResponseSuccess>) => {
       return { ...action.payload };

@@ -18,3 +18,16 @@ export const getProfileData = createAsyncThunk('profile/getProfileData', async (
     appErrorHandler(e, thunkAPI.dispatch);
   }
 });
+
+export const getAnotherProfileData = createAsyncThunk('profile/getProfileData', async (username: string, thunkAPI) => {
+  thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
+
+  try {
+    const response = await profileAPI.getAnotherProfile(username);
+
+    thunkAPI.dispatch(setProfileData(response));
+    thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
+  } catch (e) {
+    appErrorHandler(e, thunkAPI.dispatch);
+  }
+});

@@ -11,6 +11,7 @@ import Chats from '../pages/chats/1-ui/Chats';
 import Messages from '../pages/messages/1-ui/Messages';
 import NotFound from '../pages/not-found/NotFound';
 import Profile from '../pages/profile/1-ui/Profile';
+import Users from '../pages/users/1-ui/Users';
 
 export interface IRoute {
   path: string;
@@ -18,7 +19,7 @@ export interface IRoute {
 }
 
 export const publicRouter: IRoute[] = [
-  { path: RouteNames.DEFAULT, component: Profile },
+  { path: RouteNames.DEFAULT, component: Profile }, // home
   { path: RouteNames.LOGIN, component: Login },
   { path: RouteNames.REGISTRATION, component: Registration },
   { path: RouteNames.REGISTRATION_CONFIRM, component: RegistrationConfirmCode },
@@ -26,8 +27,10 @@ export const publicRouter: IRoute[] = [
   { path: RouteNames.RESET_PASSWORD_CONFIRM_CODE, component: ResetPasswordConfirmCode },
   { path: RouteNames.RESET_PASSWORD, component: ResetPassword },
   { path: RouteNames.PROFILE, component: Profile },
+  { path: RouteNames.CURRENT_PROFILE, component: Profile },
   { path: RouteNames.CHATS, component: Chats },
   { path: RouteNames.MESSAGES, component: Messages },
+  { path: RouteNames.USERS, component: Users },
   { path: RouteNames.NOT_FOUND, component: NotFound },
 ];
 

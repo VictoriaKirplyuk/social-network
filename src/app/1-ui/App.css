@@ -27,7 +27,7 @@
     text-align: center;
 }
 
-.logout {
+.logout-btn {
     background: none;
     padding: 0 1rem;
     text-align: center;
@@ -36,7 +36,7 @@
     color: #616162;
 }
 
-.logout:hover, .logout:active {
+.logout-btn:hover, .logout-btn:active {
     color: #949596;
     border-bottom: 1px solid;
 }

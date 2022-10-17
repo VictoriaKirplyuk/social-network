@@ -1,6 +1,15 @@
 import { FC } from 'react';
 
-import { MessageOutlined, UserOutlined, PhoneOutlined, TeamOutlined, PictureOutlined, SmileOutlined, PlaySquareOutlined } from '@ant-design/icons';
+import {
+  MessageOutlined,
+  UserOutlined,
+  PhoneOutlined,
+  TeamOutlined,
+  PictureOutlined,
+  SmileOutlined,
+  PlaySquareOutlined,
+  PlusOutlined,
+} from '@ant-design/icons';
 
 import { RouteNames } from '../../enums';
 
@@ -16,6 +25,7 @@ const Navbar: FC = () => {
       <NavItem title="Friends" path="#" icon={<TeamOutlined />} />
       <NavItem title="Photos" path="#" icon={<PictureOutlined />} />
       <NavItem title="Videos" path="#" icon={<PlaySquareOutlined />} />
+      <NavItem title="Add friends" path={RouteNames.USERS} icon={<PlusOutlined />} />
       <NavItem title="Stickers" path="#" icon={<SmileOutlined />} />
     </div>
   );
