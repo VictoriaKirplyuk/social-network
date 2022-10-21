@@ -3,29 +3,25 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { changeStatus } from '../../../../app/2-bll/appReducer';
 import { RequestStatus } from '../../../../enums';
 import { appErrorHandler } from '../../../../helpers/app-error-handler/app-error-handler';
-import { profileAPI } from '../../3-dal/profileAPI';
-import { setProfileData } from '../profileReducer';
+import { friendsAPI } from '../../3-dal/friendsAPI';
 
-export const getProfileData = createAsyncThunk('profile/getProfileData', async (params: void, thunkAPI) => {
+export const requestFriend = createAsyncThunk('friends/friendRequest', async (username: string, thunkAPI) => {
   thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
 
   try {
-    const response = await profileAPI.getProfile();
-
-    thunkAPI.dispatch(setProfileData(response));
+    await friendsAPI.requestFriend(username);
     thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
   } catch (e) {
     appErrorHandler(e, thunkAPI.dispatch);
   }
 });
 
-export const getAnotherProfileData = createAsyncThunk('profile/getAnotherProfileData', async (username: string, thunkAPI) => {
+export const getFriendRequests = createAsyncThunk('friends/getFriendRequests', async (params: { page?: number; size?: number }, thunkAPI) => {
   thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
 
   try {
-    const response = await profileAPI.getAnotherProfile(username);
+    await friendsAPI.getFriendRequests(params.page, params.size);
 
-    thunkAPI.dispatch(setProfileData(response));
     thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
   } catch (e) {
     appErrorHandler(e, thunkAPI.dispatch);

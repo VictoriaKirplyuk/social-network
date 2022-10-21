@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import gS from '../../common/styles/styles.module.css';
 import { RouteNames } from '../../enums';
+import { useAppSelector } from '../../hooks/redux-hooks';
 import Button from '../Button/Button';
 
 import s from './User.module.css';
@@ -19,10 +20,17 @@ interface IInfo {
 
 interface IUserProps {
   info: IInfo;
+  action: (username: string) => void;
 }
 
-const User: FC<IUserProps> = ({ info }) => {
+const UserCard: FC<IUserProps> = ({ info, action }) => {
+  const isActiveUser: boolean = useAppSelector(state => state.profile.username) === info.username;
+
   const userProfilePath: string = RouteNames.CURRENT_PROFILE.replace(':username', info.username);
+
+  const actionHandler = (): void => {
+    action(info.username);
+  };
 
   return (
     <div className={s.wrapper}>
@@ -40,9 +48,9 @@ const User: FC<IUserProps> = ({ info }) => {
           <div className={gS.infoField}>City, Age</div>
         </div>
       </div>
-      <Button style={s.btn} title="Add Friend" />
+      {!isActiveUser && <Button style={s.btn} title="Add Friend" onClick={actionHandler} />}
     </div>
   );
 };
 
-export default User;
+export default UserCard;

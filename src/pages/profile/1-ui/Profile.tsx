@@ -31,7 +31,7 @@ const Profile: FC = () => {
     if (requestedUsername) {
       dispatch(getAnotherProfileData(requestedUsername));
 
-      return;
+      return; // bug fix (logout requests)
     }
     dispatch(getProfileData());
   }, [dispatch, urlParams]);
