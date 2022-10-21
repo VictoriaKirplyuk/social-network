@@ -6,11 +6,12 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type ButtonProps = DefaultButtonPropsType & {
   title: string;
+  style?: string;
 };
 
-const Button: FC<ButtonProps> = ({ title, ...restProps }) => {
+const Button: FC<ButtonProps> = ({ title, style, ...restProps }) => {
   return (
-    <button type="button" className={s.btn} {...restProps}>
+    <button type="button" className={`${s.btn} ${style}`} {...restProps}>
       {title}
     </button>
   );

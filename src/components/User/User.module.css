@@ -1,0 +1,21 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 0;
+}
+
+.info {
+    padding: 0 15px;
+}
+
+.btn {
+    position: absolute;
+    right: 3px;
+    top: 5px;
+}

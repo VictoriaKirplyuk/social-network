@@ -9,6 +9,10 @@ export enum RouteNames {
   RESET_PASSWORD_COMPLETE = '/password/reset/confirm', // complete
   PROFILE = '/profile',
   CURRENT_PROFILE = '/profile/:username',
+  FRIENDS = '/friends/*',
+  CURRENT_FRIENDS = 'current',
+  INCOMING_FRIENDS = 'incoming',
+  OUTGOING_FRIENDS = 'outgoing',
   CHATS = '/chats',
   MESSAGES = '/messages/*',
   USERS = '/users',
