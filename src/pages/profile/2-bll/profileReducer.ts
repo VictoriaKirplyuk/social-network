@@ -26,6 +26,7 @@ const initialState: IProfile = {
   birthDate: '',
   createAt: '',
   updateAt: '',
+  attitude: null,
 };
 
 const slice = createSlice({

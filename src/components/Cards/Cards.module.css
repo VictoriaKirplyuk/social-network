@@ -1,7 +1,6 @@
 .wrapper {
     display: flex;
     justify-content: space-between;
-    position: relative;
 }
 
 .user {
@@ -14,8 +13,12 @@
     padding: 0 15px;
 }
 
+.btnGroup {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+}
+
 .btn {
-    position: absolute;
-    right: 3px;
-    top: 5px;
+    margin: 5px;
 }

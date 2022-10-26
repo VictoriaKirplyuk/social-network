@@ -40,6 +40,14 @@ export enum StepResetPassword {
   SUCCEEDED = 'succeeded',
 }
 
+export enum ProfileAttitude {
+  YOU = 'YOU' /* fix */,
+  NONE = 'NONE',
+  FRIEND_INCOMING = 'FRIEND_INCOMING',
+  FRIEND_OUTGOING = 'FRIEND_OUTGOING',
+  FRIEND = 'FRIEND',
+}
+
 export enum ErrorRegistrationCode {
   NOT_VALID = 'NOT_VALID',
   TOO_MANY_CONFIRMATION_TRIES = 'TOO_MANY_CONFIRMATION_TRIES',

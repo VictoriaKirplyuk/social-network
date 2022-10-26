@@ -1,3 +1,4 @@
+import { ProfileAttitude } from '../../../enums';
 import { IResponseError } from '../error-types/error-types';
 import { IAvatar } from '../user-types/user-types';
 
@@ -17,6 +18,7 @@ export interface IProfileDataResponseSuccess {
   birthDate: string;
   createAt: string;
   updateAt: string;
+  attitude: ProfileAttitude;
 }
 
 export interface IChangeAvatar {

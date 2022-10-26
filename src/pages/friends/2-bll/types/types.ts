@@ -1,10 +1,10 @@
 import { ProfileAttitude } from '../../../../enums';
 
-export interface IUsers {
-  foundUsers: IFoundUsers;
+export interface IFriends {
+  friendList: IFriendsList;
 }
 
-export interface IFoundUsers {
+export interface IFriendsList {
   content: IContent[];
   hasNext: boolean;
   number: number;

@@ -1,3 +1,5 @@
+import { ProfileAttitude } from '../../../../enums';
+
 export interface IProfile {
   username: string;
   avatar: IAvatar;
@@ -12,6 +14,7 @@ export interface IProfile {
   birthDate: string;
   createAt: string;
   updateAt: string;
+  attitude: ProfileAttitude | null;
 }
 
 export interface IAvatar {

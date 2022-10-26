@@ -1,3 +1,4 @@
+import { ProfileAttitude } from '../../../enums';
 import { IResponseError } from '../error-types/error-types';
 import { PageResponse } from '../page-types/page-types';
 
@@ -30,6 +31,7 @@ export interface IUserContent {
   firstName: string;
   middleName: string;
   secondName: string;
+  attitude: ProfileAttitude;
 }
 
 export interface ISearchData {
