@@ -16,8 +16,8 @@ export const friendsAPI = {
   declineFriend(username: string) {
     return instance.post<IResponseError>(`friend/request/${username}/decline`);
   },
-  getFriends(page: number, size?: number, sort?: string[]) {
-    return instance.get<FriendsResponse>(`friend?page=${page}&size=${size}&sort=${sort}`).then(response => response.data);
+  getFriends(page?: number, size?: number) {
+    return instance.get<FriendsResponse>(`friend?page=${page}&size=${size}`).then(response => response.data);
   },
   getUserFriends(username: string, page?: number, size?: number, sort?: string[]) {
     return instance.get<FriendsResponse>(`profile/${username}/friend?page=${page}&size=${size}&sort=${sort}`).then(response => response.data);

@@ -2,11 +2,14 @@ import React, { FC, useEffect } from 'react';
 
 import gS from '../../../common/styles/styles.module.css';
 import UserRequestCard from '../../../components/Cards/UserRequestCard/UserRequestCard';
+import Preloader from '../../../components/Preloader/Preloader';
+import { RequestStatus } from '../../../enums';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import { acceptFriend, declineFriend, getFriendRequests } from '../2-bll/thunk/friends-thunk';
 
 const IncomingFriends: FC = () => {
-  const friends = useAppSelector(state => state.friends.friendList.content);
+  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
+  const incomingFriends = useAppSelector(state => state.friends.friendList.content);
 
   const dispatch = useAppDispatch();
 
@@ -21,9 +24,7 @@ const IncomingFriends: FC = () => {
 
   return (
     <div className={gS.block}>
-      {friends.map(f => (
-        <UserRequestCard key={f.username} info={f} replyFriendRequest={replyFriendRequest} />
-      ))}
+      {!isLoading ? incomingFriends.map(f => <UserRequestCard key={f.username} info={f} replyFriendRequest={replyFriendRequest} />) : <Preloader />}
     </div>
   );
 };
