@@ -13,15 +13,16 @@ const { Header, Content, Footer } = Layout;
 
 const App: FC = () => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
-  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getUser()); // проверка инициализации
-  }, [dispatch]);
+  const dispatch = useAppDispatch();
 
   const logoutHandler = (): void => {
     logout(dispatch);
   };
+
+  useEffect(() => {
+    dispatch(getUser()); // проверка инициализации
+  }, [dispatch]);
 
   return (
     <div className="app">

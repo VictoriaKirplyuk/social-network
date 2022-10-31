@@ -13,9 +13,10 @@ import s from './CardInfo.module.css';
 interface ICardInfoProps {
   info: IInfo;
   isExtended?: boolean;
+  children?: React.ReactNode;
 }
 
-const CardInfo: FC<ICardInfoProps> = ({ info, isExtended }) => {
+const CardInfo: FC<ICardInfoProps> = ({ info, isExtended, children }) => {
   const userProfilePath: string = RouteNames.CURRENT_PROFILE.replace(':username', info.username);
 
   return (
@@ -30,7 +31,15 @@ const CardInfo: FC<ICardInfoProps> = ({ info, isExtended }) => {
           <span className={gS.userInfoField}>{info.secondName}</span>
         </div>
         <div className={gS.infoField}>{info.username}</div>
-        {isExtended && <div className={gS.infoField}>City, Age</div>}
+        <div>
+          {isExtended && (
+            <div className={gS.infoField}>
+              <span className={s.field}>Age,</span>
+              <span className={s.field}>City</span>
+            </div>
+          )}
+        </div>
+        <div>{children}</div>
       </div>
     </div>
   );

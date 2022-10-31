@@ -41,7 +41,7 @@ export enum StepResetPassword {
 }
 
 export enum ProfileAttitude {
-  YOU = 'YOU' /* fix */,
+  YOU = 'YOU',
   NONE = 'NONE',
   FRIEND_INCOMING = 'FRIEND_INCOMING',
   FRIEND_OUTGOING = 'FRIEND_OUTGOING',

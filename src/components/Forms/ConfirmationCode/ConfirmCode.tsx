@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 
 import icon from '../../../assets/icons/icon.jpg';
 import { RequestStatus, RouteNames, StepAuth, StepResetPassword } from '../../../enums';
-import { timeFormatter } from '../../../helpers/time-formatter/time-formatter';
+import { createTimeout } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
 import { confirmCodeSchema } from '../../../helpers/validators/confirm-code-validator';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import gS from '../../../pages/auth/auth.module.css';
@@ -28,7 +28,7 @@ const ConfirmCode: FC<IConfirmCodeProps> = ({ type, stepToCheck, onSubmit }) => 
   const dispatch = useAppDispatch();
 
   const [seconds, setSeconds] = useState<number>(startSeconds);
-  const timeToCodeRequest = timeFormatter(seconds);
+  const timeToCodeRequest = createTimeout(seconds);
   const initialValues: IConfirmCode = {
     code: '',
   };
@@ -60,7 +60,6 @@ const ConfirmCode: FC<IConfirmCodeProps> = ({ type, stepToCheck, onSubmit }) => 
   }
   if (type === 'reset-password' && stepToCheck === StepResetPassword.COMPLETE) {
     // добавить форму
-    console.log('new form');
   }
 
   return (

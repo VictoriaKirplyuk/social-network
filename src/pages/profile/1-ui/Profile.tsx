@@ -3,9 +3,11 @@ import React, { FC, useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import gS from '../../../common/styles/styles.module.css';
+import ProfileInfoField from '../../../components/_Profile/ProfileInfoField/ProfileInfoField';
 import Button from '../../../components/Button/Button';
 import ProfileAvatar from '../../../components/ProfileAvatar/ProfileAvatar';
 import { RouteNames } from '../../../enums';
+import { formatDateOfBirth } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import pS from '../../Pages.module.css';
 import { getAnotherProfileData, getProfileData } from '../2-bll/thunk/profile-thunk';
@@ -43,35 +45,28 @@ const Profile: FC = () => {
   return (
     <div className={pS.pageContent}>
       <div className={gS.block}>
+        {/* ProfileInfo component */}
         <div className={s.profileInfo}>
           <ProfileAvatar avatar={avatar.mimeType} />
-          <div className={s.generalInfo}>
-            <div>
+          {/* generalProfileInfo component */}
+          <div className={s.generalProfileInfo}>
+            <div className={s.nameGroup}>
               <span className={`${gS.userInfoField} ${gS.importantInfoField}`}>{firstName}</span>
               <span className={`${gS.userInfoField} ${gS.importantInfoField}`}>{middleName}</span>
               <span className={`${gS.userInfoField} ${gS.importantInfoField}`}>{secondName}</span>
+              <div className={gS.userInfoField}>({username})</div>
             </div>
-            <div className={gS.userInfoField}>{username}</div>
-            <div className={gS.userInfoFieldName}>
-              Birth date: <span className={gS.userInfoField}>{birthDate}</span>
-            </div>
+            <ProfileInfoField title="Date of Birth" info={formatDateOfBirth(birthDate)} />
+            <ProfileInfoField title="City" info={city} />
           </div>
         </div>
         <Button title={!isShowDetails ? 'Show details' : 'Hide details'} onClick={showDetails} />
+        {/* additionalProfileInfo component */}
         {isShowDetails && (
-          <div className={s.otherInfo}>
-            <div className={gS.userInfoFieldName}>
-              City: <span className={gS.userInfoField}>{city}</span>
-            </div>
-            <div className={gS.userInfoFieldName}>
-              Workplace: <span className={gS.userInfoField}>{workplace}</span>
-            </div>
-            <div className={gS.userInfoFieldName}>
-              Education: <span className={gS.userInfoField}>{education}</span>
-            </div>
-            <div className={gS.userInfoFieldName}>
-              Relationship: <span className={gS.userInfoField}>{relationshipStatus}</span>
-            </div>
+          <div className={s.additionalProfileInfo}>
+            <ProfileInfoField title="Workplace" info={workplace} />
+            <ProfileInfoField title="Education" info={education} />
+            <ProfileInfoField title="Relationship" info={relationshipStatus} />
           </div>
         )}
       </div>
