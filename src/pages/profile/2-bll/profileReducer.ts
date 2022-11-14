@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IProfileDataResponseSuccess } from '../../../types/api-types/profile-types/profile-types';
+import { IAvatar } from '../../../types/common-types/common-types';
 
-import { IAvatar, IProfile } from './types/types';
+import { IProfile } from './types/types';
 
 const avatarState: IAvatar = {
   mimeType: '',
@@ -18,12 +19,15 @@ const initialState: IProfile = {
   firstName: '',
   middleName: '',
   secondName: '',
-  overview: '',
-  relationshipStatus: '',
-  city: '',
-  workplace: '',
-  education: '',
+  gender: '',
   birthDate: '',
+  overview: null,
+  relationshipStatus: null,
+  workplace: null,
+  education: null,
+  citizenship: null,
+  registrationAddress: null,
+  residenceAddress: null,
   createAt: '',
   updateAt: '',
   attitude: null,

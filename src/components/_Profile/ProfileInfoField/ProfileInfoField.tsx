@@ -4,7 +4,7 @@ import gS from '../../../common/styles/styles.module.css';
 
 interface ProfileInfoFieldProps {
   title: string;
-  info: string | null;
+  info: string | null | undefined;
 }
 
 const ProfileInfoField: FC<ProfileInfoFieldProps> = ({ title, info }) => {

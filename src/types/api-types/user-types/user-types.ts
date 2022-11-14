@@ -1,4 +1,5 @@
 import { ProfileAttitude } from '../../../enums';
+import { IAvatar } from '../../common-types/common-types';
 import { IResponseError } from '../error-types/error-types';
 import { PageResponse } from '../page-types/page-types';
 
@@ -18,19 +19,13 @@ export interface IUserDataResponseSuccess {
   updateAt: string;
 }
 
-export interface IAvatar {
-  mimeType: string;
-  height: number;
-  width: number;
-  dataSize: string;
-  createAt: string; // Date
-}
-
 export interface IUserContent {
   username: string;
   firstName: string;
-  middleName: string;
+  middleName: string | null;
   secondName: string;
+  city: string | null;
+  birthDate: string;
   attitude: ProfileAttitude;
 }
 

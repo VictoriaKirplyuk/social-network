@@ -1,26 +1,22 @@
 import { ProfileAttitude } from '../../../../enums';
+import { IAddress, IAvatar } from '../../../../types/common-types/common-types';
 
 export interface IProfile {
   username: string;
   avatar: IAvatar;
   firstName: string;
-  middleName: string;
+  middleName: string | null;
   secondName: string;
-  overview: string;
-  relationshipStatus: string;
-  city: string;
-  workplace: string;
-  education: string;
+  gender: string;
   birthDate: string;
+  overview: string | null;
+  relationshipStatus: string | null;
+  workplace: string | null;
+  education: string | null;
+  citizenship: string | null;
+  registrationAddress: IAddress | null;
+  residenceAddress: IAddress | null;
   createAt: string;
   updateAt: string;
   attitude: ProfileAttitude | null;
-}
-
-export interface IAvatar {
-  mimeType: string;
-  height: number;
-  width: number;
-  dataSize: string;
-  createAt: string;
 }

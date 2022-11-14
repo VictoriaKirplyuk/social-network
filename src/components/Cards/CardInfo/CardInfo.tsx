@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import gS from '../../../common/styles/styles.module.css';
 import { RouteNames } from '../../../enums';
+import { determineUserAge } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
 import { IInfo } from '../types';
 
 import s from './CardInfo.module.css';
@@ -18,6 +19,8 @@ interface ICardInfoProps {
 
 const CardInfo: FC<ICardInfoProps> = ({ info, isExtended, children }) => {
   const userProfilePath: string = RouteNames.CURRENT_PROFILE.replace(':username', info.username);
+
+  const userAge: string = determineUserAge(info.birthDate);
 
   return (
     <div className={s.user}>
@@ -34,8 +37,8 @@ const CardInfo: FC<ICardInfoProps> = ({ info, isExtended, children }) => {
         <div>
           {isExtended && (
             <div className={gS.infoField}>
-              <span className={s.field}>Age,</span>
-              <span className={s.field}>City</span>
+              {info.city && <span className={s.field}>{info.city},</span>}
+              <span className={s.field}>{userAge} y.o.</span>
             </div>
           )}
         </div>

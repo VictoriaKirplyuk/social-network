@@ -5,5 +5,7 @@ export interface IInfo {
   firstName: string;
   middleName: string | null;
   secondName: string;
+  city: string | null;
+  birthDate: string;
   attitude: ProfileAttitude;
 }

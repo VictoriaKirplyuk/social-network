@@ -6,7 +6,7 @@ import Alert from '../../components/Alert/Alert';
 import './App.css';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import Pages from '../../pages/Pages';
-import { getUser } from '../../pages/users/2-bll/thunk/users-thunk';
+import { initializeApp } from '../../utils/initialize-app';
 import { logout } from '../../utils/logout';
 
 const { Header, Content, Footer } = Layout;
@@ -21,7 +21,7 @@ const App: FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getUser()); // проверка инициализации
+    initializeApp(dispatch);
   }, [dispatch]);
 
   return (

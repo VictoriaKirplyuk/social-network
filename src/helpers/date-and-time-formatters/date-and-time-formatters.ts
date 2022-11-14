@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 export const createTimeout = (seconds: number): string => {
   const secInMinutes = 60;
@@ -13,9 +13,11 @@ export const createTimeout = (seconds: number): string => {
   return `${formatMin}:${formatSec}`;
 }; // fix
 
-// export const determineUserAge = (birthDate: string): string => {
-//   const userBirthDate: Moment = moment(birthDate, 'YYYY-MM-DD');
-// };
+export const determineUserAge = (birthDate: string): string => {
+  const userBirthDate: Moment = moment(birthDate, 'YYYY-MM-DD');
+
+  return moment().diff(userBirthDate, 'y').toString();
+};
 
 export const formatDateOfBirth = (birthDate: string): string => {
   return moment(birthDate, 'YYYY-MM-DD').format('D MMM YYYY');

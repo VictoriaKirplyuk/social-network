@@ -18,5 +18,7 @@ export interface IContent {
   firstName: string;
   middleName: string | null;
   secondName: string;
+  city: string | null;
+  birthDate: string;
   attitude: ProfileAttitude;
 }
