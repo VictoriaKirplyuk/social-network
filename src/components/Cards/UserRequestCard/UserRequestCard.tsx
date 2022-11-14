@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
-import { ProfileAttitude } from '../../../enums';
+import { ProfileAttitude, RequestStatus } from '../../../enums';
+import { useAppSelector } from '../../../hooks/redux-hooks';
 import Button from '../../Button/Button';
 import CardInfo from '../CardInfo/CardInfo';
 import cS from '../Cards.module.css';
@@ -13,6 +14,7 @@ interface IUserRequestCardProps {
 }
 
 const UserRequestCard: FC<IUserRequestCardProps> = ({ info, replyFriendRequest, unsubscribe }) => {
+  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
   const isIncomingRequest: boolean = info.attitude === ProfileAttitude.FRIEND_INCOMING;
   const isOutgoingRequest: boolean = info.attitude === ProfileAttitude.FRIEND_OUTGOING;
 
@@ -29,13 +31,13 @@ const UserRequestCard: FC<IUserRequestCardProps> = ({ info, replyFriendRequest, 
       <CardInfo info={info} />
       {isIncomingRequest && (
         <div className={cS.btnGroup}>
-          <Button data-type="accept" style={cS.btn} title="Accept request" onClick={replyFriendRequestHandler} />
-          <Button data-type="decline" style={cS.btn} title="Decline friend" onClick={replyFriendRequestHandler} />
+          <Button data-type="accept" style={cS.btn} title="Accept request" onClick={replyFriendRequestHandler} disabled={isLoading} />
+          <Button data-type="decline" style={cS.btn} title="Decline friend" onClick={replyFriendRequestHandler} disabled={isLoading} />
         </div>
       )}
       {isOutgoingRequest && (
         <div className={cS.btnGroup}>
-          <Button style={cS.btn} title="Unsubscribe" onClick={unsubscribeHandler} />
+          <Button style={cS.btn} title="Unsubscribe" onClick={unsubscribeHandler} disabled={isLoading} />
         </div>
       )}
     </div>

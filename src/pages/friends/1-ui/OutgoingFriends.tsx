@@ -4,26 +4,29 @@ import gS from '../../../common/styles/styles.module.css';
 import UserRequestCard from '../../../components/Cards/UserRequestCard/UserRequestCard';
 import Preloader from '../../../components/Preloader/Preloader';
 import { RequestStatus } from '../../../enums';
-import { useAppSelector } from '../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
+import { getFriendOutgoing, revokeRequestFriend } from '../2-bll/thunk/friends-thunk';
+
+import s from './Friends.module.css';
 
 const OutgoingFriends: FC = () => {
   const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
   const outgoingFriends = useAppSelector(state => state.friends.friendList.content);
 
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const unsubscribe = (username: string): void => {
-    console.log(username);
-    // call action to unsubscribe
+    dispatch(revokeRequestFriend(username));
   };
 
   useEffect(() => {
-    // outgoing list request
-  }, []);
+    dispatch(getFriendOutgoing({}));
+  }, [dispatch]);
 
   return (
     <div className={gS.block}>
       {!isLoading ? outgoingFriends.map(f => <UserRequestCard key={f.username} info={f} unsubscribe={unsubscribe} />) : <Preloader />}
+      {!isLoading && !outgoingFriends.length && <div className={s.infoContent}>No content</div>}
     </div>
   );
 };

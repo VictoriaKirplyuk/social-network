@@ -29,14 +29,12 @@ const Profile: FC = () => {
   const showDetails = (): void => setIsShowDetails(!isShowDetails);
 
   useEffect(() => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     const requestedUsername = urlParams.username;
 
     if (requestedUsername) {
       dispatch(getAnotherProfileData(requestedUsername));
 
-      return; // bug fix (logout requests)
+      return;
     }
     dispatch(getProfileData());
   }, [dispatch, urlParams]);
