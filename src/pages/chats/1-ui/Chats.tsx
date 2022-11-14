@@ -1,22 +1,22 @@
 import React, { FC } from 'react';
 
+import { Navigate } from 'react-router-dom';
+
 import gS from '../../../common/styles/styles.module.css';
 import Chat from '../../../components/Chat/Chat';
+import { RouteNames } from '../../../enums';
+import { useAppSelector } from '../../../hooks/redux-hooks';
 import pS from '../../Pages.module.css';
 
 import s from './Chats.module.css';
-// import { useAppSelector } from "../../../hooks/redux-hooks";
-// import { Navigate } from "react-router-dom";
-// import { RouteNames } from "../../../enums";
 
 const Chats: FC = () => {
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const chats = true;
 
-  // const isInitialized = useAppSelector(state => state.app.isInitialized);
-  //
-  // if (!isInitialized) {
-  //   return <Navigate to={RouteNames.LOGIN} />;
-  // }
+  if (!isLoggedIn) {
+    return <Navigate to={RouteNames.LOGIN} />;
+  }
 
   return (
     <div className={pS.pageContent}>
