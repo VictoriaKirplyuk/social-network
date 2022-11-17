@@ -12,14 +12,14 @@ interface IJwtInfo {
   expDate: string;
 }
 
-const getTokenExpDate = (exp: string): string => {
-  return moment().add(exp, 'ms').format('MM-DD-YYYY HH:mm');
+const getJwtTokenExpDate = (exp: string): string => {
+  return moment.unix(+exp).format('MM-DD-YYYY HH:mm');
 };
 
 export const registerJwtToken = (jwtToken: string): void => {
   const parsedJwt: IJwtToken = jwtDecode(jwtToken);
 
-  const expDate: string = getTokenExpDate(parsedJwt.exp);
+  const expDate: string = getJwtTokenExpDate(parsedJwt.exp);
 
   const jwtInfo: IJwtInfo = {
     exp: parsedJwt.exp,
@@ -30,7 +30,7 @@ export const registerJwtToken = (jwtToken: string): void => {
   localStorage.setItem('jwtInfo', JSON.stringify(jwtInfo));
 };
 
-export const isJwtTokenValid = (): boolean | Error => {
+export const isJwtTokenValid = (): boolean | null => {
   const jwtInfo: string | null = localStorage.getItem('jwtInfo');
 
   if (jwtInfo) {
@@ -40,5 +40,5 @@ export const isJwtTokenValid = (): boolean | Error => {
     return moment().isBefore(expDate);
   }
 
-  return new Error('Jwt token not found');
+  return null;
 };

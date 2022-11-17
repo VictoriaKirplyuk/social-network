@@ -29,15 +29,17 @@ const Profile: FC = () => {
   const showDetails = (): void => setIsShowDetails(!isShowDetails);
 
   useEffect(() => {
-    const requestedUsername = urlParams.username;
+    if (isLoggedIn) {
+      const requestedUsername = urlParams.username;
 
-    if (requestedUsername) {
-      dispatch(getAnotherProfileData(requestedUsername));
+      if (requestedUsername) {
+        dispatch(getAnotherProfileData(requestedUsername));
 
-      return;
+        return;
+      }
+      dispatch(getProfileData());
     }
-    dispatch(getProfileData());
-  }, [dispatch, urlParams]);
+  }, [dispatch, isLoggedIn, urlParams]);
 
   if (!isLoggedIn) {
     return <Navigate to={RouteNames.LOGIN} />;
