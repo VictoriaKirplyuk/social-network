@@ -7,8 +7,6 @@ import { RequestStatus } from '../../../enums';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import { getFriendOutgoing, revokeRequestFriend } from '../2-bll/thunk/friends-thunk';
 
-import s from './Friends.module.css';
-
 const OutgoingFriends: FC = () => {
   const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
   const outgoingFriends = useAppSelector(state => state.friends.friendList.content);
@@ -26,7 +24,7 @@ const OutgoingFriends: FC = () => {
   return (
     <div className={gS.block}>
       {!isLoading ? outgoingFriends.map(f => <UserRequestCard key={f.username} info={f} unsubscribe={unsubscribe} />) : <Preloader />}
-      {!isLoading && !outgoingFriends.length && <div className={s.infoContent}>No content</div>}
+      {!isLoading && !outgoingFriends.length && <div className={gS.infoBlockContent}>No content</div>}
     </div>
   );
 };

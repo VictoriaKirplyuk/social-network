@@ -6,6 +6,11 @@
     flex-direction: column;
 }
 
+.importantInfoField {
+    font-size: 1.4rem;
+    padding-bottom: 0;
+}
+
 .userInfoFieldName {
     color: #616162;
     font-size: 1rem;
@@ -21,7 +26,11 @@
     color: #616162;
 }
 
-.importantInfoField {
-    font-size: 1.4rem;
-    padding-bottom: 0;
+.infoBlock {
+    text-align: center;
+}
+
+.infoBlockContent {
+    text-align: center;
+    color: #616162;
 }

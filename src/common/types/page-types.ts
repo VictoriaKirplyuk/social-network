@@ -1,12 +1,8 @@
-import { IResponseError } from '../error-types/error-types';
-
-export type PageResponse<T> = IPageResponseSuccess<T> & IResponseError;
-
-interface IPageResponseSuccess<T> {
+export interface IPageData<T> {
   totalElements: number;
   totalPages: number;
   sort?: ISort;
-  size: 0;
+  size: number;
   content: T[];
   number: number;
   pageable?: IPageable;
@@ -17,13 +13,13 @@ interface IPageResponseSuccess<T> {
   hasNext: boolean;
 }
 
-interface ISort {
+export interface ISort {
   empty: boolean;
   sorted: boolean;
   unsorted: boolean;
 }
 
-interface IPageable {
+export interface IPageable {
   sort: ISort;
   offset: number;
   pageNumber: number;

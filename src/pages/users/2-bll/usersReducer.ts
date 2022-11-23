@@ -1,14 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IFoundUsers, IUsers } from './types/types';
+import { IPageData } from '../../../common/types/page-types';
+import { IUserContent } from '../../../common/types/user-types';
+
+import { IUsers } from './types/types';
 
 const foundUsersState = {
+  totalElements: 0,
+  totalPages: 0,
   content: [],
-  hasNext: false,
   number: 0,
   size: 0,
-  totalElements: 0,
-  totalPages: 1,
+  hasNext: false,
 };
 
 const initialState: IUsers = {
@@ -19,7 +22,7 @@ const slice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setFoundUsers: (state, action: PayloadAction<IFoundUsers>) => {
+    setFoundUsers: (state, action: PayloadAction<IPageData<IUserContent>>) => {
       state.foundUsers = action.payload;
     },
   },

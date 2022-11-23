@@ -1,4 +1,4 @@
-import { IResponseError } from '../../../../../types/api-types/error-types/error-types';
+import { IResponseError } from '../../../../../common/types/api-types/error-types';
 
 export type LoginResponse = ILoginResponseSuccess & IResponseError;
 

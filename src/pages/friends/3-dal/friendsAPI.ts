@@ -1,7 +1,7 @@
 import { instance } from '../../../app/3-dal/instance';
-import { IResponseError } from '../../../types/api-types/error-types/error-types';
+import { IResponseError } from '../../../common/types/api-types/error-types';
 
-import { FriendsResponse } from './types/friend-api-types';
+import { FriendsResponse } from './types/types';
 
 const defaultPage: number = 0;
 const defaultSize: number = 6;

@@ -1,10 +1,8 @@
-import { ProfileAttitude } from '../../../enums';
-import { IAddress, IAvatar } from '../../common-types/common-types';
-import { IResponseError } from '../error-types/error-types';
+import { ProfileAttitude } from '../../enums';
 
-export type ProfileResponse = IProfileDataResponseSuccess & IResponseError;
+import { IAddress, IAvatar } from './user-types';
 
-export interface IProfileDataResponseSuccess {
+export interface IProfileData {
   username: string;
   avatar: IAvatar;
   firstName: string;
@@ -22,8 +20,4 @@ export interface IProfileDataResponseSuccess {
   createAt: string;
   updateAt: string;
   attitude: ProfileAttitude;
-}
-
-export interface IChangeAvatar {
-  image: string;
 }

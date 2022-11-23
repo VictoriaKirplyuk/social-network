@@ -1,11 +1,11 @@
 import { instance } from '../../../app/3-dal/instance';
-import { IResponseError } from '../../../types/api-types/error-types/error-types';
+import { IResponseError } from '../../../common/types/api-types/error-types';
 
-import { ChatResponse, ChatsResponse } from './types/chat-api-types';
+import { ChatResponse, ChatsResponse } from './types/types';
 
 export const chatAPI = {
-  getChats(page?: number, size?: number, sort?: string[]) {
-    return instance.get<ChatsResponse>(`chat?page=${page}&size=${size}&sort=${sort}`).then(response => response.data);
+  getChats(page?: number, size?: number) {
+    return instance.get<ChatsResponse>(`chat?page=${page}&size=${size}`).then(response => response.data);
   },
   // создает или получает чат с указанным пользователя
   createChat(targetUsername: string) {

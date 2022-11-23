@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
 
 import { appReducer } from '../app/2-bll/appReducer';
 import { loginReducer } from '../pages/auth/login/2-bll/loginReducer';
@@ -23,7 +22,6 @@ const rootReducer = combineReducers({
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk),
   });
 };
 

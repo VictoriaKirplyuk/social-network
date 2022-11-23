@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IProfileDataResponseSuccess } from '../../../types/api-types/profile-types/profile-types';
-import { IAvatar } from '../../../types/common-types/common-types';
-
-import { IProfile } from './types/types';
+import { IProfileData } from '../../../common/types/profile-types';
+import { IAvatar } from '../../../common/types/user-types';
+import { ProfileAttitude } from '../../../enums';
 
 const avatarState: IAvatar = {
   mimeType: '',
@@ -13,7 +12,7 @@ const avatarState: IAvatar = {
   createAt: '',
 };
 
-const initialState: IProfile = {
+const initialState: IProfileData = {
   username: '',
   avatar: avatarState,
   firstName: '',
@@ -30,14 +29,14 @@ const initialState: IProfile = {
   residenceAddress: null,
   createAt: '',
   updateAt: '',
-  attitude: null,
+  attitude: ProfileAttitude.NONE,
 };
 
 const slice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    setProfileData: (state, action: PayloadAction<IProfileDataResponseSuccess>) => {
+    setProfileData: (state, action: PayloadAction<IProfileData>) => {
       return { ...action.payload };
     },
   },

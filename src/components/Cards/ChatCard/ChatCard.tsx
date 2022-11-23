@@ -3,11 +3,11 @@ import React, { FC } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 
-import gS from '../../common/styles/styles.module.css';
+import gS from '../../../common/styles/styles.module.css';
 
-import s from './Chat.module.css';
+import s from './ChatCard.module.css';
 
-const Chat: FC = () => {
+const ChatCard: FC = () => {
   return (
     <div className={`${gS.block} ${s.chat}`}>
       <Avatar size={70} icon={<UserOutlined />} />
@@ -20,4 +20,4 @@ const Chat: FC = () => {
   );
 };
 
-export default Chat;
+export default ChatCard;

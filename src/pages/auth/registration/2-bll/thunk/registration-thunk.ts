@@ -5,7 +5,7 @@ import { RequestStatus, StepAuth } from '../../../../../enums';
 import { appErrorHandler } from '../../../../../helpers/app-error-handler/app-error-handler';
 import { login } from '../../../login/2-bll/thunk/login-thunk';
 import { authAPI } from '../../3-dal/authAPI';
-import { IRegistrationUserData } from '../../3-dal/types/registration-api-types';
+import { IRegistrationUserData } from '../../3-dal/types/types';
 import { changeStepAuth } from '../authReducer';
 
 export const registration = createAsyncThunk('auth/registration', async (phoneOrEmail: string, thunkAPI) => {

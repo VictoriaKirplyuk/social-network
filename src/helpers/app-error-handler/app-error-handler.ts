@@ -1,12 +1,10 @@
-import { AnyAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ThunkDispatch } from 'redux-thunk';
 
 import { changeError, changeStatus } from '../../app/2-bll/appReducer';
+import { IResponseError } from '../../common/types/api-types/error-types';
 import { RequestStatus } from '../../enums';
-import { IResponseError } from '../../types/api-types/error-types/error-types';
 
-export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<unknown, unknown, AnyAction>): void => {
+export const appErrorHandler = (e: unknown, dispatch: any): void => {
   const serverCodeError = 500;
   let errorMessage;
 

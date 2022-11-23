@@ -3,10 +3,11 @@ import React, { FC, useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import gS from '../../../common/styles/styles.module.css';
+import AdditionalProfileInfo from '../../../components/_Profile/AdditionalProfileInfo/AdditionalProfileInfo';
+import ProfileAvatar from '../../../components/_Profile/ProfileAvatar/ProfileAvatar';
 import ProfileInfoField from '../../../components/_Profile/ProfileInfoField/ProfileInfoField';
 import Button from '../../../components/Button/Button';
 import Preloader from '../../../components/Preloader/Preloader';
-import ProfileAvatar from '../../../components/ProfileAvatar/ProfileAvatar';
 import { RequestStatus, RouteNames } from '../../../enums';
 import { formatDateOfBirth } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
@@ -67,13 +68,7 @@ const Profile: FC = () => {
             </div>
             <Button title={!isShowDetails ? 'Show details' : 'Hide details'} onClick={showDetails} />
             {/* additionalProfileInfo component */}
-            {isShowDetails && (
-              <div className={s.additionalProfileInfo}>
-                <ProfileInfoField title="Workplace" info={workplace} />
-                <ProfileInfoField title="Education" info={education} />
-                <ProfileInfoField title="Relationship" info={relationshipStatus} />
-              </div>
-            )}
+            {isShowDetails && <AdditionalProfileInfo workplace={workplace} education={education} relationshipStatus={relationshipStatus} />}
           </>
         ) : (
           <Preloader />

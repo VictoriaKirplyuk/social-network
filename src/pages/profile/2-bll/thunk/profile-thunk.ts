@@ -31,3 +31,16 @@ export const getAnotherProfileData = createAsyncThunk('profile/getAnotherProfile
     appErrorHandler(e, thunkAPI.dispatch);
   }
 });
+
+export const getAvatar = createAsyncThunk('profile/getAvatar', async (username: string, thunkAPI) => {
+  thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
+
+  try {
+    const response = await profileAPI.getAnotherProfile(username);
+
+    thunkAPI.dispatch(setProfileData(response));
+    thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
+  } catch (e) {
+    appErrorHandler(e, thunkAPI.dispatch);
+  }
+});

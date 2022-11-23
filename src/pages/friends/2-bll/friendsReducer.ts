@@ -1,14 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IFriends, IFriendsList } from './types/types';
+import { IPageData } from '../../../common/types/page-types';
+import { IUserContent } from '../../../common/types/user-types';
+
+import { IFriends } from './types/types';
 
 const friendList = {
+  totalElements: 0,
+  totalPages: 0,
   content: [],
-  hasNext: false,
   number: 0,
   size: 0,
-  totalElements: 0,
-  totalPages: 1,
+  hasNext: false,
 };
 
 const initialState: IFriends = {
@@ -19,7 +22,7 @@ const slice = createSlice({
   name: 'friends',
   initialState,
   reducers: {
-    setFriends: (state, action: PayloadAction<IFriendsList>) => {
+    setFriends: (state, action: PayloadAction<IPageData<IUserContent>>) => {
       state.friendList = action.payload;
     },
   },

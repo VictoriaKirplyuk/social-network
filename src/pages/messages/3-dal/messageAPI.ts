@@ -1,7 +1,7 @@
 import { instance } from '../../../app/3-dal/instance';
-import { IResponseError } from '../../../types/api-types/error-types/error-types';
+import { IResponseError } from '../../../common/types/api-types/error-types';
 
-import { MessageResponse, MessagesResponse } from './types/message-api-types';
+import { MessageResponse, MessagesResponse } from './types/types';
 
 export const messageAPI = {
   // создать сообщение

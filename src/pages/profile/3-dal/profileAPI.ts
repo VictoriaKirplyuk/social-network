@@ -1,5 +1,8 @@
 import { instance } from '../../../app/3-dal/instance';
-import { IChangeAvatar, ProfileResponse } from '../../../types/api-types/profile-types/profile-types';
+
+import { IChangeAvatar, ProfileResponse } from './types/types';
+
+const defaultPhotoSize: string = '150x150';
 
 export const profileAPI = {
   getProfile() {
@@ -11,7 +14,7 @@ export const profileAPI = {
   getAnotherProfile(username: string) {
     return instance.get<ProfileResponse>(`profile/${username}`).then(response => response.data);
   },
-  getAnotherAvatar(username: string, size: string) {
+  getAvatar(username: string, size: string = defaultPhotoSize) {
     // посмотреть что приходит и сделать тип на респонс
     return instance.get(`profile/${username}/avatar?size=${size}`).then(response => response.data);
   },

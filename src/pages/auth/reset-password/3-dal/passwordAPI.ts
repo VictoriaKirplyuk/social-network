@@ -1,6 +1,6 @@
 import { instance } from '../../../../app/3-dal/instance';
-import { AuthResponse } from '../../../../types/api-types/auth-types/auth-types';
-import { IResponseError } from '../../../../types/api-types/error-types/error-types';
+import { AuthResponse } from '../../../../common/types/api-types/auth-types';
+import { IResponseError } from '../../../../common/types/api-types/error-types';
 
 export const passwordAPI = {
   reset(phoneOrEmail: string) {

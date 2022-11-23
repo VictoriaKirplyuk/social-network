@@ -1,8 +1,7 @@
 import { instance } from '../../../../app/3-dal/instance';
-import { AuthResponse } from '../../../../types/api-types/auth-types/auth-types';
-import { ResponseUserData } from '../../../../types/api-types/user-types/user-types';
+import { AuthResponse } from '../../../../common/types/api-types/auth-types';
 
-import { IRegistrationUserData } from './types/registration-api-types';
+import { IRegistrationUserData, UserRegistrationResponseData } from './types/types';
 
 export const authAPI = {
   registration(phoneOrEmail: string) {
@@ -23,6 +22,6 @@ export const authAPI = {
   },
 
   registrationComplete(continuationCode: string, userData: IRegistrationUserData) {
-    return instance.post<ResponseUserData>('registration/complete', { continuationCode, ...userData }).then(response => response.data);
+    return instance.post<UserRegistrationResponseData>('registration/complete', { continuationCode, ...userData }).then(response => response.data);
   },
 };

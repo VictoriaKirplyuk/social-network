@@ -8,13 +8,6 @@
     padding: 5px 15px;
 }
 
-.additionalProfileInfo {
-    border-top: 1px solid #eff2f6;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-}
-
 .nameGroup {
     display: flex;
     align-items: end;

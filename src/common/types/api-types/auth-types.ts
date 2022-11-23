@@ -1,4 +1,4 @@
-import { IResponseError } from '../error-types/error-types';
+import { IResponseError } from './error-types';
 
 export type AuthResponse = IAuthResponseSuccess & IResponseError;
 
