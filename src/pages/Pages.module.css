@@ -1,5 +1,5 @@
 .appLayoutContent { /*wrapper inside app-content for page content size and positioning*/
-    min-width: 45%;
+    width: 45rem;
     display: flex;
     justify-content: center;
 }

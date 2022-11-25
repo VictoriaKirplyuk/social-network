@@ -24,7 +24,7 @@ export const formatDateOfBirth = (birthDate: string): string => {
 };
 
 export const formatMessageSendDate = (sendingDate: string): string => {
-  const formattedDate: Moment = moment(sendingDate, 'YYYY-MM-DD HH:mm');
+  const formattedDate: Moment = moment(sendingDate);
   const yesterdaysDate: Moment = moment().subtract(1, 'days');
 
   if (moment().isSame(formattedDate, 'day')) return formattedDate.format('HH:mm');

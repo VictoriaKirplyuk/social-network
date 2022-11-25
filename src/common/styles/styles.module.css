@@ -20,6 +20,7 @@
 
 .infoField {
     color: #616162;
+    white-space: nowrap;
 }
 
 .infoBlock {
