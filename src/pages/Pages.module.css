@@ -1,4 +1,10 @@
-.pageContent {
-    min-width: 45rem;
-    margin: 0 10px;
+.appLayoutContent { /*wrapper inside app-content for page content size and positioning*/
+    min-width: 45%;
+    display: flex;
+    justify-content: center;
+}
+
+.pageContent { /*page content contains blocks*/
+    min-width: 95%;
+    margin: 0 5px;
 }

@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar/Navbar';
 import { useAppSelector } from '../hooks/redux-hooks';
 
 import LoadingPage from './loading-page/LoadingPage';
+import s from './Pages.module.css';
 
 const Pages: FC = () => {
   const isInitialized = useAppSelector(state => state.app.isInitialized);
@@ -13,7 +14,7 @@ const Pages: FC = () => {
   return isInitialized ? (
     <>
       {isLoggedIn && <Navbar />}
-      <div className="site-layout-content">
+      <div className={s.appLayoutContent}>
         <AppRouter />
       </div>
     </>

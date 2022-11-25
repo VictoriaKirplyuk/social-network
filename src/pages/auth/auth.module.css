@@ -1,5 +1,5 @@
 .formWrapper { /*Обертка формы*/
-    min-width: 21.2rem;
+    min-width: 35%;
     background-color: white;
     display: flex;
     flex-direction: column;

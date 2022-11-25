@@ -39,7 +39,7 @@ const Chats: FC = () => {
               isRead={c.lastMessage.isRead}
               unreadMessages={c.unreadMessages}
               lastMessage={c.lastMessage.text}
-              sendingDate={c.createAt}
+              sendingDate={c.lastMessage.createAt}
             />
           ))
         ) : (

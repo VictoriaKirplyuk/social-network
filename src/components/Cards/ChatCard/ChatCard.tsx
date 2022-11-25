@@ -7,6 +7,7 @@ import gS from '../../../common/styles/styles.module.css';
 import { MessageType } from '../../../enums';
 import { concatUsername } from '../../../helpers/concatenation/concatenation';
 import { formatMessageSendDate } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
+import { lastMessageFormatter } from '../../../helpers/messages-formatters/messages-formatters';
 
 import s from './ChatCard.module.css';
 
@@ -29,7 +30,7 @@ const ChatCard: FC<IChatCard> = ({ firstName, middleName, secondName, messageTyp
     if (messageType === MessageType.IMAGE) return 'Image~';
     if (messageType === MessageType.STICKER) return 'Sticker~';
 
-    return lastMessage;
+    return lastMessageFormatter(lastMessage);
   };
 
   return (
