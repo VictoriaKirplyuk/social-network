@@ -1,16 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { Navigate } from 'react-router-dom';
 
 import gS from '../../../common/styles/styles.module.css';
 import ChatCard from '../../../components/Cards/ChatCard/ChatCard';
-import { RouteNames } from '../../../enums';
-import { useAppSelector } from '../../../hooks/redux-hooks';
+import Preloader from '../../../components/Preloader/Preloader';
+import { RequestStatus, RouteNames } from '../../../enums';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import pS from '../../Pages.module.css';
+import { getChats } from '../2-bll/thunk/chats-thunk';
 
 const Chats: FC = () => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
-  const chats = false;
+  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
+  const chats = useAppSelector(state => state.chats.chatList.content);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getChats({}));
+  }, [dispatch]);
 
   if (!isLoggedIn) {
     return <Navigate to={RouteNames.LOGIN} />;
@@ -18,13 +27,26 @@ const Chats: FC = () => {
 
   return (
     <div className={pS.pageContent}>
-      {chats ? (
-        <ChatCard />
-      ) : (
-        <div className={`${gS.block} ${gS.infoBlock}`}>
-          <div className={gS.infoField}>No chats</div>
-        </div>
-      )}
+      <div className={gS.block}>
+        {!isLoading ? (
+          chats.map(c => (
+            <ChatCard
+              key={c.id}
+              firstName={c.targetProfile.firstName}
+              middleName={c.targetProfile.middleName}
+              secondName={c.targetProfile.secondName}
+              messageType={c.lastMessage.type}
+              isRead={c.lastMessage.isRead}
+              unreadMessages={c.unreadMessages}
+              lastMessage={c.lastMessage.text}
+              sendingDate={c.createAt}
+            />
+          ))
+        ) : (
+          <Preloader />
+        )}
+        {!isLoading && !chats.length && <div className={gS.infoBlockContent}>No chats</div>}
+      </div>
     </div>
   );
 };

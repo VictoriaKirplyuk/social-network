@@ -1,9 +1,21 @@
 .chat {
-    flex-direction: row;
+    display: flex;
+    width: 100%;
+    padding: 7px;
     position: relative;
+    border-bottom: 1px solid rgba(227, 227, 229, 0.7);
+}
+
+.chat:hover {
+    background-color: rgba(245, 245, 246, 0.7);
+}
+
+.unreadChat {
+    background-color: rgba(245, 245, 246, 0.7);
 }
 
 .info {
+    width: 80%;
     padding: 5px 15px;
 }
 
@@ -11,4 +23,16 @@
     position: absolute;
     right: 1rem;
     color: #616162;
+}
+
+.unreadMessages {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    width: 1.7rem;
+    background-color: rgba(25, 143, 252, 0.5);
+    border-radius: 50%;
+    font-weight: bold;
+    color: #3d3b3b;
 }

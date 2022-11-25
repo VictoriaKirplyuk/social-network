@@ -14,7 +14,7 @@ export enum RouteNames {
   INCOMING_FRIENDS = 'incoming',
   OUTGOING_FRIENDS = 'outgoing',
   CHATS = '/chats',
-  MESSAGES = '/messages/*',
+  MESSAGES = 'chat/messages/*',
   USERS = '/users',
   NOT_FOUND = '/*',
 }
@@ -51,4 +51,11 @@ export enum ProfileAttitude {
 export enum ErrorRegistrationCode {
   NOT_VALID = 'NOT_VALID',
   TOO_MANY_CONFIRMATION_TRIES = 'TOO_MANY_CONFIRMATION_TRIES',
+}
+
+export enum MessageType {
+  SERVICE = 'SERVICE',
+  TEXT = 'TEXT',
+  IMAGE = 'IMAGE',
+  STICKER = 'STICKER',
 }

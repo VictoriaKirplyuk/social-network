@@ -1,14 +1,10 @@
 .block {
-    margin-bottom: 5px;
     padding: 7px;
+    border: 1px solid rgba(218, 218, 220, 70%);
+    border-radius: 5px;
     background-color: white;
     display: flex;
     flex-direction: column;
-}
-
-.importantInfoField {
-    font-size: 1.4rem;
-    padding-bottom: 0;
 }
 
 .userInfoFieldName {
@@ -30,7 +26,14 @@
     text-align: center;
 }
 
+.importantInfoField {
+    font-size: 1.4rem;
+    padding-bottom: 0;
+}
+
 .infoBlockContent {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #616162;
 }

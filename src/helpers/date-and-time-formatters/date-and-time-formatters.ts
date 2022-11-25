@@ -14,11 +14,22 @@ export const createTimeout = (seconds: number): string => {
 }; // fix
 
 export const determineUserAge = (birthDate: string): string => {
-  const userBirthDate: Moment = moment(birthDate, 'YYYY-MM-DD');
+  const formattedDate: Moment = moment(birthDate, 'YYYY-MM-DD');
 
-  return moment().diff(userBirthDate, 'y').toString();
+  return moment().diff(formattedDate, 'y').toString();
 };
 
 export const formatDateOfBirth = (birthDate: string): string => {
   return moment(birthDate, 'YYYY-MM-DD').format('D MMM YYYY');
+};
+
+export const formatMessageSendDate = (sendingDate: string): string => {
+  const formattedDate: Moment = moment(sendingDate, 'YYYY-MM-DD HH:mm');
+  const yesterdaysDate: Moment = moment().subtract(1, 'days');
+
+  if (moment().isSame(formattedDate, 'day')) return formattedDate.format('HH:mm');
+  if (yesterdaysDate.isSame(formattedDate, 'day')) return 'yesterday';
+  if (moment().isSame(formattedDate, 'year')) return formattedDate.format('MMM YY');
+
+  return formattedDate.format('DD MMM');
 };

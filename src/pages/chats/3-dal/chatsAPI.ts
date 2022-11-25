@@ -3,8 +3,11 @@ import { IResponseError } from '../../../common/types/api-types/error-types';
 
 import { ChatResponse, ChatsResponse } from './types/types';
 
-export const chatAPI = {
-  getChats(page?: number, size?: number) {
+const defaultPage: number = 0;
+const defaultSize: number = 8;
+
+export const chatsAPI = {
+  getChats(page: number = defaultPage, size: number = defaultSize) {
     return instance.get<ChatsResponse>(`chat?page=${page}&size=${size}`).then(response => response.data);
   },
   // создает или получает чат с указанным пользователя
