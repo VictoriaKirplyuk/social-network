@@ -1,0 +1,9 @@
+.navItemIcon {
+    padding: 0 5px;
+}
+
+.navItemTitle {
+    padding: 0 5px;
+    color: #616162;
+    white-space: nowrap;
+}

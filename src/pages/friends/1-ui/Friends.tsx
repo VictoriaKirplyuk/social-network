@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import LineNavbar from '../../../components/LineNavbar/LineNavbar';
+import NavbarLine from '../../../components/Navbars/NavbarLine/NavbarLine';
 import { RouteNames } from '../../../enums';
 import { useAppSelector } from '../../../hooks/redux-hooks';
 import { friendsRouter } from '../../../router';
@@ -16,7 +16,7 @@ export interface INavItem {
 const Friends: FC = () => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
-  const navItem: INavItem[] = [
+  const navItems: INavItem[] = [
     { title: 'Friends', path: RouteNames.CURRENT_FRIENDS },
     { title: 'Incoming requests', path: RouteNames.INCOMING_FRIENDS },
     { title: 'Outgoing requests', path: RouteNames.OUTGOING_FRIENDS },
@@ -28,7 +28,7 @@ const Friends: FC = () => {
 
   return (
     <div className={pS.pageContent}>
-      <LineNavbar items={navItem} />
+      <NavbarLine items={navItems} />
       <Routes>
         {friendsRouter.map(route => (
           <Route key={route.path} path={route.path} element={<route.component />} />

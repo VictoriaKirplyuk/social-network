@@ -19,8 +19,18 @@ import s from './Profile.module.css';
 const Profile: FC = () => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
-  const { firstName, middleName, secondName, username, avatar, birthDate, residenceAddress, education, relationshipStatus, workplace } =
-    useAppSelector(state => state.profile);
+  const {
+    firstName,
+    middleName,
+    secondName,
+    username,
+    avatar,
+    birthDate,
+    residenceAddress,
+    education,
+    relationshipStatus,
+    workplace,
+  } = useAppSelector(state => state.profile);
   const dispatch = useAppDispatch();
 
   const urlParams = useParams<'username'>();
@@ -68,7 +78,13 @@ const Profile: FC = () => {
             </div>
             <Button title={!isShowDetails ? 'Show details' : 'Hide details'} onClick={showDetails} />
             {/* additionalProfileInfo component */}
-            {isShowDetails && <AdditionalProfileInfo workplace={workplace} education={education} relationshipStatus={relationshipStatus} />}
+            {isShowDetails && (
+              <AdditionalProfileInfo
+                workplace={workplace}
+                education={education}
+                relationshipStatus={relationshipStatus}
+              />
+            )}
           </>
         ) : (
           <Preloader />

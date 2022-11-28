@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import AppRouter from '../components/AppRouter/AppRouter';
-import Navbar from '../components/Navbar/Navbar';
+import MainNavbar from '../components/Navbars/MainNavbar/MainNavbar';
 import { useAppSelector } from '../hooks/redux-hooks';
 
 import LoadingPage from './loading-page/LoadingPage';
@@ -13,7 +13,7 @@ const Pages: FC = () => {
 
   return isInitialized ? (
     <>
-      {isLoggedIn && <Navbar />}
+      {isLoggedIn && <MainNavbar />}
       <div className={s.appLayoutContent}>
         <AppRouter />
       </div>

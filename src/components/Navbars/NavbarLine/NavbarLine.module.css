@@ -1,0 +1,22 @@
+.navItemGroup {
+    display: flex;
+    justify-content: start;
+    white-space: nowrap;
+}
+
+.navItem, .navItemActive {
+    padding: 5px;
+    margin: 0 2px;
+    background-color: #e0dfdf;
+}
+
+.navItem:hover {
+    background-color: #f3f4f5;
+    opacity: 90%;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.navItemActive {
+    opacity: 60%;
+}
