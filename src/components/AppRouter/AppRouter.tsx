@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import { publicRouter } from '../../router';
+import { publicRouter } from '../../routers/routers';
 
-const AppRouter: FC = () => {
+const AppRouter = (): ReactElement => {
   return (
     <Routes>
       {publicRouter.map(route => (

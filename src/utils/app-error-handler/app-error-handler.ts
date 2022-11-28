@@ -3,11 +3,11 @@ import axios from 'axios';
 
 import { changeError, changeStatus } from '../../app/2-bll/appReducer';
 import { IResponseError } from '../../common/types/api-types/error-types';
-import { RequestStatus } from '../../enums';
+import { RequestStatus } from '../../enums/app-enums';
 
 export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<unknown, unknown, AnyAction>): void => {
-  const serverCodeError = 500;
-  let errorMessage;
+  const serverCodeError: number = 500;
+  let errorMessage: string | undefined;
 
   if (axios.isAxiosError(e) && e.response) {
     if (e.response.status < serverCodeError) {

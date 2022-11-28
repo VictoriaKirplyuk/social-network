@@ -10,10 +10,17 @@ export const passwordAPI = {
     return instance.post<AuthResponse>('password-reset/resend', { continuationCode }).then(response => response.data);
   },
   resetConfirmLink(linkCode: string) {
-    return instance.post<AuthResponse>(`password-reset/confirm/link?linkCode=${linkCode}`).then(response => response.data);
+    return instance
+      .post<AuthResponse>(`password-reset/confirm/link?linkCode=${linkCode}`)
+      .then(response => response.data);
   },
   resetConfirmCode(continuationCode: string, manualCode: string) {
-    return instance.post<AuthResponse>('password-reset/confirm/code', { continuationCode, manualCode }).then(response => response.data);
+    return instance
+      .post<AuthResponse>('password-reset/confirm/code', {
+        continuationCode,
+        manualCode,
+      })
+      .then(response => response.data);
   },
   resetComplete(continuationCode: string, password: string) {
     return instance.post<IResponseError>('password-reset/complete', { continuationCode, password });

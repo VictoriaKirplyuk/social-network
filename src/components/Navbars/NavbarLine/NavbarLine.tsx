@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import gS from '../../../common/styles/styles.module.css';
 import NavItem from '../NavItem/NavItem';
-import { INavItem } from '../types/types';
+import { INavItem } from '../types';
 
 import s from './NavbarLine.module.css';
 
@@ -10,7 +10,7 @@ interface ILineNavbarProps {
   items: INavItem[];
 }
 
-const NavbarLine: FC<ILineNavbarProps> = ({ items }) => {
+const NavbarLine = ({ items }: ILineNavbarProps): ReactElement => {
   const navItemStyle: string = `${s.navItem}`;
   const navItemActiveStyle: string = `${s.navItemActive}`;
 

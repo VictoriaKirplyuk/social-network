@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ReactElement } from 'react';
 
 import {
   MessageOutlined,
@@ -11,15 +11,14 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 
-import { RouteNames } from '../../../enums';
+import { RouteNames } from '../../../enums/router-enums';
 import NavItem from '../NavItem/NavItem';
-import { INavItem } from '../types/types';
+import { INavItem } from '../types';
 
 import s from './MainNavbar.module.css';
 
-const MainNavbar: FC = () => {
+const MainNavbar = (): ReactElement => {
   const friendsPath: string = RouteNames.FRIENDS.replace('*', RouteNames.CURRENT_FRIENDS);
-
   const navItems: INavItem[] = [
     { title: 'My page', path: RouteNames.PROFILE, icon: <UserOutlined /> },
     { title: 'Messenger', path: RouteNames.CHATS, icon: <MessageOutlined /> },
@@ -30,13 +29,12 @@ const MainNavbar: FC = () => {
     { title: 'Add friends', path: RouteNames.USERS, icon: <PlusOutlined /> },
     { title: 'Stickers', path: RouteNames.NOT_FOUND, icon: <SmileOutlined /> },
   ];
-
   const navItemStyle: string = `${s.navItem}`;
 
   return (
     <div className={s.navbar}>
       {navItems.map(({ title, path, icon }) => (
-        <NavItem key={path} title={title} path={path} icon={icon} style={navItemStyle} />
+        <NavItem key={title} title={title} path={path} icon={icon} style={navItemStyle} />
       ))}
     </div>
   );

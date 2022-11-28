@@ -1,21 +1,19 @@
-import React, { FC, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
 import { changeError } from '../../app/2-bll/appReducer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 
 import s from './Alert.module.css';
 
-const Alert: FC = () => {
-  const error = useAppSelector(state => state.app.error);
-
+const Alert = (): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const alertStatus = error !== '';
+  const error = useAppSelector(state => state.app.error);
 
   useEffect(() => {
-    const delay = 3000;
+    const delay: number = 3000;
 
-    if (alertStatus) {
+    if (error) {
       const timeout = setTimeout(() => {
         dispatch(changeError({ error: '' }));
       }, delay);
@@ -24,10 +22,10 @@ const Alert: FC = () => {
         clearTimeout(timeout);
       };
     }
-  }, [error, alertStatus, dispatch]);
+  }, [error, dispatch]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{alertStatus && <div className={s.alert}>{error}</div>}</>;
+  return <>{error && <div className={s.alert}>{error}</div>}</>;
 };
 
 export default Alert;

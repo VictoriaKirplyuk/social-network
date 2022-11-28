@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPageData } from '../../../common/types/page-types';
 import { IUserContent } from '../../../common/types/user-types';
 
-import { IUsers } from './types/types';
+import { IUsersState } from './types/types';
 
 const foundUsersState = {
   totalElements: 0,
@@ -14,7 +14,7 @@ const foundUsersState = {
   hasNext: false,
 };
 
-const initialState: IUsers = {
+const initialState: IUsersState = {
   foundUsers: foundUsersState,
 };
 

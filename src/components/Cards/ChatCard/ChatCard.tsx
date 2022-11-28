@@ -1,19 +1,20 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 
 import gS from '../../../common/styles/styles.module.css';
-import { MessageType } from '../../../enums';
-import { concatUsername } from '../../../helpers/concatenation/concatenation';
-import { formatMessageSendDate } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
-import { lastMessageFormatter } from '../../../helpers/messages-formatters/messages-formatters';
+import { Nullable } from '../../../common/types/nullable';
+import { MessageType } from '../../../enums/message-enums';
+import { concatUsername } from '../../../utils/concatenation/concatenation';
+import { formatMessageSendDate } from '../../../utils/date-and-time-formatters/date-and-time-formatters';
+import { lastMessageFormatter } from '../../../utils/messages-formatters/messages-formatters';
 
 import s from './ChatCard.module.css';
 
-interface IChatCard {
+interface IChatCardProps {
   firstName: string;
-  middleName: string | null;
+  middleName: Nullable<string>;
   secondName: string;
   messageType: string;
   lastMessage: string;
@@ -22,7 +23,16 @@ interface IChatCard {
   sendingDate: string;
 }
 
-const ChatCard: FC<IChatCard> = ({ firstName, middleName, secondName, messageType, lastMessage, unreadMessages, isRead, sendingDate }) => {
+const ChatCard = ({
+  firstName,
+  middleName,
+  secondName,
+  messageType,
+  lastMessage,
+  unreadMessages,
+  isRead,
+  sendingDate,
+}: IChatCardProps): ReactElement => {
   const senderName: string = concatUsername(firstName, middleName, secondName);
   const readingStyle: string = !isRead ? `${s.unreadChat}` : '';
 

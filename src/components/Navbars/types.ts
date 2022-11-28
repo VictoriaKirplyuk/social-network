@@ -1,7 +1,7 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 export interface INavItem {
   title: string;
   path: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 }

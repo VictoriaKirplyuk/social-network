@@ -5,7 +5,6 @@ import { IRegistrationUserData, UserRegistrationResponseData } from './types/typ
 
 export const authAPI = {
   registration(phoneOrEmail: string) {
-    // Вынести типы?
     return instance.post<AuthResponse>('registration', { phoneOrEmail }).then(response => response.data);
   },
 
@@ -14,14 +13,23 @@ export const authAPI = {
   },
 
   registrationConfirmLink(linkCode: string) {
-    return instance.post<AuthResponse>(`registration/confirm/link?linkCode=${linkCode}`).then(response => response.data);
+    return instance
+      .post<AuthResponse>(`registration/confirm/link?linkCode=${linkCode}`)
+      .then(response => response.data);
   },
 
   registrationConfirmCode(continuationCode: string, manualCode: string) {
-    return instance.post<AuthResponse>('registration/confirm/code', { continuationCode, manualCode }).then(response => response.data);
+    return instance
+      .post<AuthResponse>('registration/confirm/code', {
+        continuationCode,
+        manualCode,
+      })
+      .then(response => response.data);
   },
 
   registrationComplete(continuationCode: string, userData: IRegistrationUserData) {
-    return instance.post<UserRegistrationResponseData>('registration/complete', { continuationCode, ...userData }).then(response => response.data);
+    return instance
+      .post<UserRegistrationResponseData>('registration/complete', { continuationCode, ...userData })
+      .then(response => response.data);
   },
 };

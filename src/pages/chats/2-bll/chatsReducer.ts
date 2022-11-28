@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IChatInfo } from '../../../common/types/chat-types';
 import { IPageData } from '../../../common/types/page-types';
 
-import { IChats } from './types/types';
+import { IChatsState } from './types/types';
 
 const chatList = {
   totalElements: 0,
@@ -14,7 +14,7 @@ const chatList = {
   hasNext: false,
 };
 
-const initialState: IChats = {
+const initialState: IChatsState = {
   chatList,
 };
 

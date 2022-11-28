@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ interface IFriendCardProps {
   info: IInfo;
 }
 
-const FriendCard: FC<IFriendCardProps> = ({ info }) => {
+const FriendCard = ({ info }: IFriendCardProps): ReactElement => {
   return (
     <div className={cS.wrapper}>
       <CardInfo info={info}>

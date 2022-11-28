@@ -24,7 +24,9 @@ export const friendsAPI = {
     return instance.get<FriendsResponse>(`friend?page=${page}&size=${size}`).then(response => response.data);
   },
   getUserFriends(username: string, sort?: string[], page: number = defaultPage, size: number = defaultSize) {
-    return instance.get<FriendsResponse>(`profile/${username}/friend?page=${page}&size=${size}&sort=${sort}`).then(response => response.data);
+    return instance
+      .get<FriendsResponse>(`profile/${username}/friend?page=${page}&size=${size}&sort=${sort}`)
+      .then(response => response.data);
   },
   getFriendIncoming(page = defaultPage, size = defaultSize) {
     return instance.get<FriendsResponse>(`friend/incoming?page=${page}&size=${size}`).then(response => response.data);

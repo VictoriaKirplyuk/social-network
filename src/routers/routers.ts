@@ -1,6 +1,6 @@
-import * as React from 'react';
+import { ComponentType } from 'react';
 
-import { RouteNames } from '../enums';
+import { RouteNames } from '../enums/router-enums';
 import Login from '../pages/auth/login/1-ui/Login';
 import Registration from '../pages/auth/registration/1-ui/Registration';
 import RegistrationComplete from '../pages/auth/registration/1-ui/RegistrationComplete';
@@ -19,11 +19,11 @@ import Users from '../pages/users/1-ui/Users';
 
 export interface IRoute {
   path: RouteNames;
-  component: React.ComponentType;
+  component: ComponentType;
 }
 
 export const publicRouter: IRoute[] = [
-  { path: RouteNames.DEFAULT, component: Profile }, // home
+  { path: RouteNames.DEFAULT, component: Profile },
   { path: RouteNames.LOGIN, component: Login },
   { path: RouteNames.REGISTRATION, component: Registration },
   { path: RouteNames.REGISTRATION_CONFIRM, component: RegistrationConfirmCode },

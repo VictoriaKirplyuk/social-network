@@ -1,4 +1,4 @@
-import { ProfileAttitude } from '../../enums';
+import { ProfileAttitude } from '../../enums/profile-enums';
 
 export const createUserCardBtnTitle = (attitude: ProfileAttitude): string => {
   if (attitude === ProfileAttitude.NONE || attitude === ProfileAttitude.FRIEND_INCOMING) return 'Add friend';

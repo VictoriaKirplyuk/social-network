@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPageData } from '../../../common/types/page-types';
 import { IUserContent } from '../../../common/types/user-types';
 
-import { IFriends } from './types/types';
+import { IFriendsState } from './types/types';
 
 const friendList = {
   totalElements: 0,
@@ -14,7 +14,7 @@ const friendList = {
   hasNext: false,
 };
 
-const initialState: IFriends = {
+const initialState: IFriendsState = {
   friendList,
 };
 

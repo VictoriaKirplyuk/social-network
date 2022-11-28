@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 
-interface IPreloader {
+interface IPreloaderProps {
   size?: 'small' | 'default' | 'large' | undefined;
 }
 
-const Preloader: FC<IPreloader> = ({ size }) => {
+const Preloader = ({ size }: IPreloaderProps): ReactElement => {
   return <Spin indicator={<LoadingOutlined spin />} size={size} />;
 };
 

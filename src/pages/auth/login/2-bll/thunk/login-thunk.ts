@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { changeStatus } from '../../../../../app/2-bll/appReducer';
-import { RequestStatus } from '../../../../../enums';
-import { appErrorHandler } from '../../../../../helpers/app-error-handler/app-error-handler';
-import { registerJwtToken } from '../../../../../utils/jwt-token';
-import { ILogin } from '../../1-ui/types/login-types';
+import { RequestStatus } from '../../../../../enums/app-enums';
+import { appErrorHandler } from '../../../../../utils/app-error-handler/app-error-handler';
+import { registerJwtToken } from '../../../../../utils/initialize-and-logout-app/jwt-token';
+import { ILogin } from '../../1-ui/types/types';
 import { loginAPI } from '../../3-dal/loginAPI';
 import { setIsLoggedIn } from '../loginReducer';
 

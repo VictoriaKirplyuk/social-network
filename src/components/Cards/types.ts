@@ -1,11 +1,12 @@
-import { ProfileAttitude } from '../../enums';
+import { Nullable } from '../../common/types/nullable';
+import { ProfileAttitude } from '../../enums/profile-enums';
 
 export interface IInfo {
   username: string;
   firstName: string;
-  middleName: string | null;
+  middleName: Nullable<string>;
   secondName: string;
-  city: string | null;
+  city: Nullable<string>;
   birthDate: string;
   attitude: ProfileAttitude;
 }

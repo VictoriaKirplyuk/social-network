@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import gS from '../../../common/styles/styles.module.css';
 import Message from '../../../components/Message/Message';
@@ -6,8 +6,8 @@ import pS from '../../Pages.module.css';
 
 import s from './Messages.module.css';
 
-const Messages: FC = () => {
-  const messages = true;
+const Messages = (): ReactElement => {
+  const messages: boolean = true;
 
   return (
     <div className={pS.pageContent}>

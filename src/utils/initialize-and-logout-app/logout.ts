@@ -1,7 +1,6 @@
-import { AnyAction } from '@reduxjs/toolkit';
-import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 
-import { setIsLoggedIn } from '../pages/auth/login/2-bll/loginReducer';
+import { setIsLoggedIn } from '../../pages/auth/login/2-bll/loginReducer';
 
 export const logout = (dispatch: ThunkDispatch<unknown, unknown, AnyAction>): void => {
   localStorage.clear();

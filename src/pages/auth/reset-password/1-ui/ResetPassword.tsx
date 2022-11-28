@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { ReactElement } from 'react';
 
 import EmailOrPhone, { IEmailOrPhoneProps } from '../../../../components/Forms/EmailOrPhone/EmailOrPhone';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import { resetPassword } from '../2-bll/thunk/password-thunk';
 
-const ResetPassword: FC = () => {
+const ResetPassword = (): ReactElement => {
   const stepResetPassword = useAppSelector(state => state.password.stepResetPassword);
 
   const formSettings: IEmailOrPhoneProps = {

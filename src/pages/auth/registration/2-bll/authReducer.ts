@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { StepAuth } from '../../../../enums';
+import { StepAuth } from '../../../../enums/auth-enums';
 
-const initialState: IAuth = {
-  stepAuth: StepAuth.IDLE,
-};
-
-interface IAuth {
+interface IAuthState {
   stepAuth: StepAuth;
 }
+
+const initialState: IAuthState = {
+  stepAuth: StepAuth.IDLE,
+};
 
 const slice = createSlice({
   name: 'auth',

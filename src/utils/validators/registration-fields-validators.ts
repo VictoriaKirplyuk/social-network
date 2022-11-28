@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
-const maxPasswordSymbol = 11;
-const maxNameSymbol = 15;
+const maxPasswordSymbol: number = 11;
+const maxNameSymbol: number = 15;
 
 export const registrationFieldFormatter = (field: string): string => {
   return field.replace('+', '');

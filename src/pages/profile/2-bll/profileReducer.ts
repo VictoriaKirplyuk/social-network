@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IProfileData } from '../../../common/types/profile-types';
 import { IAvatar } from '../../../common/types/user-types';
-import { ProfileAttitude } from '../../../enums';
+import { ProfileAttitude } from '../../../enums/profile-enums';
 
 const avatarState: IAvatar = {
   mimeType: '',

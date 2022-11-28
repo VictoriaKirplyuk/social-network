@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { StepResetPassword } from '../../../../enums';
-
-const initialState: IPassword = {
-  stepResetPassword: StepResetPassword.IDLE,
-};
+import { StepResetPassword } from '../../../../enums/auth-enums';
 
 interface IPassword {
   stepResetPassword: StepResetPassword;
 }
+
+const initialState: IPassword = {
+  stepResetPassword: StepResetPassword.IDLE,
+};
 
 const slice = createSlice({
   name: 'password',

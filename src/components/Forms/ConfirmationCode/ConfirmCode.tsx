@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 
 import { AsyncThunk } from '@reduxjs/toolkit';
 import { Button, Input } from 'antd';
@@ -6,16 +6,18 @@ import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
 import icon from '../../../assets/icons/icon.jpg';
-import { RequestStatus, RouteNames, StepAuth, StepResetPassword } from '../../../enums';
-import { createTimeout } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
-import { confirmCodeSchema } from '../../../helpers/validators/confirm-code-validator';
+import { RequestStatus } from '../../../enums/app-enums';
+import { StepAuth, StepResetPassword } from '../../../enums/auth-enums';
+import { RouteNames } from '../../../enums/router-enums';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import gS from '../../../pages/auth/auth.module.css';
 import { resendRegistration } from '../../../pages/auth/registration/2-bll/thunk/registration-thunk';
+import { createTimeout } from '../../../utils/date-and-time-formatters/date-and-time-formatters';
+import { confirmCodeSchema } from '../../../utils/validators/confirm-code-validator';
 
 import { IConfirmCode } from './types/confirm-code-types';
 
-const startSeconds = 90;
+const startSeconds: number = 90;
 
 export interface IConfirmCodeProps {
   type: 'registration' | 'reset-password';
@@ -23,12 +25,14 @@ export interface IConfirmCodeProps {
   onSubmit: AsyncThunk<void, string, {}>;
 }
 
-const ConfirmCode: FC<IConfirmCodeProps> = ({ type, stepToCheck, onSubmit }) => {
-  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
+const ConfirmCode = ({ type, stepToCheck, onSubmit }: IConfirmCodeProps): ReactElement => {
   const dispatch = useAppDispatch();
 
+  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
+
   const [seconds, setSeconds] = useState<number>(startSeconds);
-  const timeToCodeRequest = createTimeout(seconds);
+
+  const timeToCodeRequest: string = createTimeout(seconds);
   const initialValues: IConfirmCode = {
     code: '',
   };
@@ -42,16 +46,16 @@ const ConfirmCode: FC<IConfirmCodeProps> = ({ type, stepToCheck, onSubmit }) => 
     },
   });
 
-  const fetchCode = (): void => {
+  const onFetchCodeBtnClick = (): void => {
     dispatch(resendRegistration()); // прокинуть в пропсы
     setSeconds(startSeconds);
   };
 
   useEffect(() => {
-    const ms = 1000;
+    const delay: number = 1000;
 
     if (seconds > 0) {
-      setTimeout(() => setSeconds(seconds - 1), ms);
+      setTimeout(() => setSeconds(seconds - 1), delay);
     }
   }, [seconds]);
 
@@ -67,7 +71,12 @@ const ConfirmCode: FC<IConfirmCodeProps> = ({ type, stepToCheck, onSubmit }) => 
       <div className={gS.info}>
         <img className={gS.icon} src={icon} alt="Workflow" />
         <h2 className={gS.title}>Enter confirmation code</h2>
-        <button type="button" className={!seconds ? gS.actionBtn : gS.actionBtnDisabled} onClick={fetchCode} disabled={!!seconds}>
+        <button
+          type="button"
+          className={!seconds ? gS.actionBtn : gS.actionBtnDisabled}
+          onClick={onFetchCodeBtnClick}
+          disabled={!!seconds}
+        >
           Send code again {!!seconds && timeToCodeRequest}
         </button>
       </div>

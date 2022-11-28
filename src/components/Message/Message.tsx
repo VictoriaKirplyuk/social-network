@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 
 import s from './Message.module.css';
 
-const Message: FC = () => {
+const Message = (): ReactElement => {
   return (
     <div className={s.message}>
       <Avatar size={40} icon={<UserOutlined />} />

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: ILogin = {
-  isLoggedIn: false,
-};
-
-interface ILogin {
+interface ILoginState {
   isLoggedIn: boolean;
 }
+
+const initialState: ILoginState = {
+  isLoggedIn: false,
+};
 
 const slice = createSlice({
   name: 'login',

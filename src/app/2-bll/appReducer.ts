@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { RequestStatus } from '../../enums';
+import { RequestStatus } from '../../enums/app-enums';
 
-const initialState: IApp = {
-  status: RequestStatus.IDLE, // происходит ли взаимодействие с сервером
-  error: '', // глобальная ошибка
-  isInitialized: false,
-};
-
-interface IApp {
+interface IAppState {
   status: RequestStatus;
-  error: string | undefined;
+  error: string | undefined; // fix
   isInitialized: boolean;
 }
+
+const initialState: IAppState = {
+  status: RequestStatus.IDLE,
+  error: '',
+  isInitialized: false,
+};
 
 const slice = createSlice({
   name: 'app',

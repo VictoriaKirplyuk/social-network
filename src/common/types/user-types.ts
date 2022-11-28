@@ -1,4 +1,6 @@
-import { ProfileAttitude } from '../../enums';
+import { ProfileAttitude } from '../../enums/profile-enums';
+
+import { Nullable } from './nullable';
 
 export interface IUserData {
   email: string;
@@ -16,9 +18,9 @@ export interface IUserData {
 export interface IUserContent {
   username: string;
   firstName: string;
-  middleName: string | null;
+  middleName: Nullable<string>;
   secondName: string;
-  city: string | null;
+  city: Nullable<string>;
   birthDate: string;
   attitude: ProfileAttitude;
 }

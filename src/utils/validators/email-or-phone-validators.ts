@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const phoneRegExp = /^\s*\+?375((33\d{7})|(29\d{7})|(44\d{7}|)|(25\d{7}))\s*$/i;
+const phoneRegExp: RegExp = /^\s*\+?375((33\d{7})|(29\d{7})|(44\d{7}|)|(25\d{7}))\s*$/i;
 
 export const emailOrPhoneSchema = yup.object().shape({
   emailOrPhone: yup

@@ -1,22 +1,24 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { Button, Checkbox, Input } from 'antd';
 import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
 import icon from '../../../../assets/icons/icon.jpg';
-import { RequestStatus, RouteNames } from '../../../../enums';
-import { loginSchema } from '../../../../helpers/validators/login-fields-validator';
+import { RequestStatus } from '../../../../enums/app-enums';
+import { RouteNames } from '../../../../enums/router-enums';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
+import { loginSchema } from '../../../../utils/validators/login-fields-validator';
 import gS from '../../auth.module.css';
 import { login } from '../2-bll/thunk/login-thunk';
 
-import { ILogin } from './types/login-types';
+import { ILogin } from './types/types';
 
-const Login: FC = () => {
+const Login = (): ReactElement => {
+  const dispatch = useAppDispatch();
+
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
-  const dispatch = useAppDispatch();
 
   const initialValues: ILogin = {
     email: '',

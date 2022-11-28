@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { AsyncThunk } from '@reduxjs/toolkit';
 import { Button, Input } from 'antd';
@@ -6,11 +6,13 @@ import { useFormik } from 'formik';
 import { Navigate } from 'react-router-dom';
 
 import icon from '../../../assets/icons/icon.jpg';
-import { RequestStatus, RouteNames, StepAuth, StepResetPassword } from '../../../enums';
-import { emailOrPhoneSchema } from '../../../helpers/validators/email-or-phone-validators';
-import { registrationFieldFormatter } from '../../../helpers/validators/registration-fields-validators';
+import { RequestStatus } from '../../../enums/app-enums';
+import { StepAuth, StepResetPassword } from '../../../enums/auth-enums';
+import { RouteNames } from '../../../enums/router-enums';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import gS from '../../../pages/auth/auth.module.css';
+import { emailOrPhoneSchema } from '../../../utils/validators/email-or-phone-validators';
+import { registrationFieldFormatter } from '../../../utils/validators/registration-fields-validators';
 
 import { IEmailOrPhone } from './types/email-or-phone-types';
 
@@ -18,17 +20,19 @@ export interface IEmailOrPhoneProps {
   type: 'registration' | 'reset-password';
   stepToCheck: StepAuth | StepResetPassword;
   title: string;
-  subLink?: {
-    title: string;
-    path: string;
-  };
+  subLink?: ISubLink;
   onSubmit: AsyncThunk<void, string, {}>;
 }
 
-const EmailOrPhone: FC<IEmailOrPhoneProps> = ({ type, title, stepToCheck, subLink, onSubmit }) => {
-  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
+interface ISubLink {
+  title: string;
+  path: string;
+}
 
+const EmailOrPhone = ({ type, title, stepToCheck, subLink, onSubmit }: IEmailOrPhoneProps): ReactElement => {
   const dispatch = useAppDispatch();
+
+  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
 
   const initialValues: IEmailOrPhone = {
     emailOrPhone: '',
@@ -55,11 +59,11 @@ const EmailOrPhone: FC<IEmailOrPhoneProps> = ({ type, title, stepToCheck, subLin
       <div className={gS.info}>
         <img className={gS.icon} src={icon} alt="Workflow" />
         <h2 className={gS.title}>{title}</h2>
-        {subLink ? (
+        {subLink && (
           <a className={gS.link} href={subLink.path}>
             {subLink.title}
           </a>
-        ) : null}
+        )}
       </div>
       <form className={gS.form} onSubmit={handleSubmit}>
         <div className={gS.itemForm}>

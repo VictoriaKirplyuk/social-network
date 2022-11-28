@@ -1,12 +1,13 @@
-import React, { FC } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import gS from '../../../common/styles/styles.module.css';
-import { RouteNames } from '../../../enums';
-import { determineUserAge } from '../../../helpers/date-and-time-formatters/date-and-time-formatters';
+import { RouteNames } from '../../../enums/router-enums';
+import { concatUsername } from '../../../utils/concatenation/concatenation';
+import { determineUserAge } from '../../../utils/date-and-time-formatters/date-and-time-formatters';
 import { IInfo } from '../types';
 
 import s from './CardInfo.module.css';
@@ -14,12 +15,12 @@ import s from './CardInfo.module.css';
 interface ICardInfoProps {
   info: IInfo;
   isExtended?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
-const CardInfo: FC<ICardInfoProps> = ({ info, isExtended, children }) => {
+const CardInfo = ({ info, isExtended, children }: ICardInfoProps): ReactElement => {
   const userProfilePath: string = RouteNames.CURRENT_PROFILE.replace(':username', info.username);
-
+  const fullUsername: string = concatUsername(info.firstName, info.middleName, info.secondName);
   const userAge: string = determineUserAge(info.birthDate);
 
   return (
@@ -29,20 +30,16 @@ const CardInfo: FC<ICardInfoProps> = ({ info, isExtended, children }) => {
       </NavLink>
       <div className={s.info}>
         <div>
-          <span className={gS.userInfoField}>{info.firstName}</span>
-          <span className={gS.userInfoField}>{info.middleName}</span>
-          <span className={gS.userInfoField}>{info.secondName}</span>
+          <span className={gS.userInfoField}>{fullUsername}</span>
         </div>
         <div className={gS.infoField}>{info.username}</div>
-        <div>
-          {isExtended && (
-            <div className={gS.infoField}>
-              {info.city && <span className={s.field}>{info.city},</span>}
-              <span className={s.field}>{userAge} y.o.</span>
-            </div>
-          )}
-        </div>
-        <div>{children}</div>
+        {isExtended && (
+          <div className={gS.infoField}>
+            {info.city && <span className={s.field}>{info.city},</span>}
+            <span className={s.field}>{userAge} y.o.</span>
+          </div>
+        )}
+        {children && <div>{children}</div>}
       </div>
     </div>
   );

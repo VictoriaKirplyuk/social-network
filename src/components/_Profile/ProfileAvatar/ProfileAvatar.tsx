@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { UserOutlined } from '@ant-design/icons';
 import Avatar from 'antd/es/avatar/avatar';
 
-interface IProfileAvatar {
+interface IProfileAvatarProps {
   avatar: string;
 }
 
-const ProfileAvatar: FC<IProfileAvatar> = ({ avatar }) => {
+const ProfileAvatar = ({ avatar }: IProfileAvatarProps): ReactElement => {
   return <Avatar size={140} icon={avatar || <UserOutlined />} />;
 };
 

@@ -1,7 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit';
 
-import { changeInitialized } from '../app/2-bll/appReducer';
-import { setIsLoggedIn } from '../pages/auth/login/2-bll/loginReducer';
+import { changeInitialized } from '../../app/2-bll/appReducer';
+import { setIsLoggedIn } from '../../pages/auth/login/2-bll/loginReducer';
 
 import { isJwtTokenValid } from './jwt-token';
 

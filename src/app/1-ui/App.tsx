@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
 import { Layout } from 'antd';
 
@@ -6,17 +6,17 @@ import Alert from '../../components/Alert/Alert';
 import './App.css';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import Pages from '../../pages/Pages';
-import { initializeApp } from '../../utils/initialize-app';
-import { logout } from '../../utils/logout';
+import { initializeApp } from '../../utils/initialize-and-logout-app/initialize-app';
+import { logout } from '../../utils/initialize-and-logout-app/logout';
 
 const { Header, Content, Footer } = Layout;
 
-const App: FC = () => {
-  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
-
+const App = (): ReactElement => {
   const dispatch = useAppDispatch();
 
-  const logoutHandler = (): void => {
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
+
+  const onLogoutBtnClick = (): void => {
     logout(dispatch);
   };
 
@@ -29,7 +29,7 @@ const App: FC = () => {
       <Layout className="layout">
         <Header className="app-header">
           {isLoggedIn && (
-            <button type="button" className="logout-btn" onClick={logoutHandler}>
+            <button type="button" className="logout-btn" onClick={onLogoutBtnClick}>
               Log out
             </button>
           )}

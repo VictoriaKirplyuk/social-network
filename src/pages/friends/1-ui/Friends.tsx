@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import NavbarLine from '../../../components/Navbars/NavbarLine/NavbarLine';
-import { RouteNames } from '../../../enums';
+import { RouteNames } from '../../../enums/router-enums';
 import { useAppSelector } from '../../../hooks/redux-hooks';
-import { friendsRouter } from '../../../router';
+import { friendsRouter } from '../../../routers/routers';
 import pS from '../../Pages.module.css';
 
 export interface INavItem {
@@ -13,7 +13,7 @@ export interface INavItem {
   path: RouteNames;
 }
 
-const Friends: FC = () => {
+const Friends = (): ReactElement => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
   const navItems: INavItem[] = [

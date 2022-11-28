@@ -1,22 +1,23 @@
-import { ProfileAttitude } from '../../enums';
+import { ProfileAttitude } from '../../enums/profile-enums';
 
+import { Nullable } from './nullable';
 import { IAddress, IAvatar } from './user-types';
 
 export interface IProfileData {
   username: string;
   avatar: IAvatar;
   firstName: string;
-  middleName: string | null;
+  middleName: Nullable<string>;
   secondName: string;
   gender: string;
   birthDate: string;
-  overview: string | null;
-  relationshipStatus: string | null;
-  workplace: string | null;
-  education: string | null;
-  citizenship: string | null;
-  registrationAddress: IAddress | null;
-  residenceAddress: IAddress | null;
+  overview: Nullable<string>;
+  relationshipStatus: Nullable<string>;
+  workplace: Nullable<string>;
+  education: Nullable<string>;
+  citizenship: Nullable<string>;
+  registrationAddress: Nullable<IAddress>;
+  residenceAddress: Nullable<IAddress>;
   createAt: string;
   updateAt: string;
   attitude: ProfileAttitude;

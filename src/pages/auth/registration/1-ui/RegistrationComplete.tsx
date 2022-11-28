@@ -1,24 +1,27 @@
-import React, { FC, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
 import { Button, Input } from 'antd';
 import { useFormik } from 'formik';
 import { Navigate, useSearchParams } from 'react-router-dom';
 
 import icon from '../../../../assets/icons/icon.jpg';
-import { RequestStatus, RouteNames, StepAuth } from '../../../../enums';
-import { registrationCompleteSchema } from '../../../../helpers/validators/registration-fields-validators';
+import { Nullable } from '../../../../common/types/nullable';
+import { RequestStatus } from '../../../../enums/app-enums';
+import { StepAuth } from '../../../../enums/auth-enums';
+import { RouteNames } from '../../../../enums/router-enums';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
+import { registrationCompleteSchema } from '../../../../utils/validators/registration-fields-validators';
 import gS from '../../auth.module.css';
 import { registrationComplete, registrationConfirmLink } from '../2-bll/thunk/registration-thunk';
 
 import { IRegistrationComplete } from './types/registration-complete-types';
 
-const RegistrationComplete: FC = () => {
-  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
-  const stepAuth = useAppSelector(state => state.auth.stepAuth);
+const RegistrationComplete = (): ReactElement => {
+  const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
-  const [searchParams] = useSearchParams();
+  const stepAuth = useAppSelector(state => state.auth.stepAuth);
+  const isLoading = useAppSelector(state => state.app.status) === RequestStatus.LOADING;
 
   const initialValues: IRegistrationComplete = {
     password: '',
@@ -44,7 +47,7 @@ const RegistrationComplete: FC = () => {
   });
 
   useEffect(() => {
-    const confirmCode = searchParams.get('code');
+    const confirmCode: Nullable<string> = searchParams.get('code');
 
     if (confirmCode) dispatch(registrationConfirmLink(confirmCode));
   }, [dispatch, searchParams]);
@@ -137,7 +140,9 @@ const RegistrationComplete: FC = () => {
                 onBlur={handleBlur}
                 value={values.confirmPassword}
               />
-              <div className={gS.error}>{touched.confirmPassword && errors.confirmPassword && errors.confirmPassword}</div>
+              <div className={gS.error}>
+                {touched.confirmPassword && errors.confirmPassword && errors.confirmPassword}
+              </div>
             </div>
             <div className={gS.itemForm}>
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -157,7 +162,14 @@ const RegistrationComplete: FC = () => {
             <div className={gS.itemForm}>
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="gender" />
-              <select disabled={isLoading} placeholder="Gender" className={gS.formField} id="gender" onChange={handleChange} onBlur={handleBlur}>
+              <select
+                disabled={isLoading}
+                placeholder="Gender"
+                className={gS.formField}
+                id="gender"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              >
                 <option value="MALE" label="Male">
                   Male
                 </option>

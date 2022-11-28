@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { ReactElement } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { INavItem } from '../types/types';
+import { INavItem } from '../types';
 
 import s from './NavItem.module.css';
 
@@ -13,7 +13,7 @@ interface IStyle {
   activeStyle?: string;
 }
 
-const NavItem: FC<NavItemProps> = ({ title, path, icon, style, activeStyle }) => {
+const NavItem = ({ title, path, icon, style, activeStyle }: NavItemProps): ReactElement => {
   const navLinkStyle: string = activeStyle || style;
 
   return (

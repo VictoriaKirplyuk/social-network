@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { ReactElement } from 'react';
 
 import EmailOrPhone, { IEmailOrPhoneProps } from '../../../../components/Forms/EmailOrPhone/EmailOrPhone';
-import { RouteNames } from '../../../../enums';
+import { RouteNames } from '../../../../enums/router-enums';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import { registration } from '../2-bll/thunk/registration-thunk';
 
-const Registration: FC = () => {
+const Registration = (): ReactElement => {
   const stepAuth = useAppSelector(state => state.auth.stepAuth);
 
   const formSettings: IEmailOrPhoneProps = {

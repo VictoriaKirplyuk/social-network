@@ -1,6 +1,6 @@
 .navItemGroup {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     white-space: nowrap;
 }
 

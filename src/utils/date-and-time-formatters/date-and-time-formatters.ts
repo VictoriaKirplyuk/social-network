@@ -1,8 +1,8 @@
 import moment, { Moment } from 'moment';
 
 export const createTimeout = (seconds: number): string => {
-  const secInMinutes = 60;
-  const formatBorderValue = 10;
+  const secInMinutes: number = 60;
+  const formatBorderValue: number = 10;
 
   const min = Math.floor(seconds / secInMinutes);
   const sec = seconds - min * secInMinutes;
@@ -29,7 +29,7 @@ export const formatMessageSendDate = (sendingDate: string): string => {
 
   if (moment().isSame(formattedDate, 'day')) return formattedDate.format('HH:mm');
   if (yesterdaysDate.isSame(formattedDate, 'day')) return 'yesterday';
-  if (moment().isSame(formattedDate, 'year')) return formattedDate.format('MMM YY');
+  if (moment().isAfter(formattedDate, 'year')) return formattedDate.format('MMM YY');
 
   return formattedDate.format('DD MMM');
 };

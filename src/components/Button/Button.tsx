@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, ReactElement } from 'react';
 
 import s from './Button.module.css';
 
@@ -9,7 +9,7 @@ type ButtonProps = DefaultButtonPropsType & {
   style?: string;
 };
 
-const Button: FC<ButtonProps> = ({ title, style, ...restProps }) => {
+const Button = ({ title, style, ...restProps }: ButtonProps): ReactElement => {
   return (
     <button type="button" className={`${s.btn} ${style}`} {...restProps}>
       {title}
