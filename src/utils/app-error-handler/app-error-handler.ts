@@ -11,13 +11,9 @@ export const appErrorHandler = (e: unknown, dispatch: ThunkDispatch<unknown, unk
 
   if (axios.isAxiosError(e) && e.response) {
     if (e.response.status < serverCodeError) {
-      const error = (e.response?.data as IResponseError).fields;
+      const error = e.response.data as IResponseError;
 
-      if (error) {
-        errorMessage = `${error[0]?.field}: ${error[0]?.code}`;
-      } else {
-        errorMessage = `${e.message} ${e.code}`;
-      }
+      if (error) errorMessage = `${error.message}`;
     } else {
       errorMessage = `${e.message}: ${e.code}`;
     }

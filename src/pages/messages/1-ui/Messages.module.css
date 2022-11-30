@@ -1,5 +1,40 @@
-.noMessages {
-    min-height: 25rem;
+.messagesBlock {
+    height: 39rem;
+    padding: 0;
+}
+
+.messageList {
+    width: 100%;
+    height: 90%;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.messageList::-webkit-scrollbar {
+    width: 0;
+}
+
+.messageSendBlock {
+    display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    min-height: 10%;
+    border-top: 1px solid rgba(206, 206, 208, 0.7);
+    background-color: #f4f7fa;
+    border-radius: 0 0 5px 5px;
+}
+
+.sendMessageField {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    resize: none;
+    padding: 5px;
+    width: 75%;
+    border-radius: 10px;
+    border: 1px solid rgba(206, 206, 208, 0.7);
+}
+
+.sendMessageField::-webkit-scrollbar {
+    width: 0;
 }

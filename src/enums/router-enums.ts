@@ -14,7 +14,7 @@ export enum RouteNames {
   INCOMING_FRIENDS = 'incoming',
   OUTGOING_FRIENDS = 'outgoing',
   CHATS = '/chats',
-  MESSAGES = 'chat/messages/*',
+  MESSAGES = '/chat/messages/:chatId',
   USERS = '/users',
   NOT_FOUND = '/*',
 }

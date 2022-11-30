@@ -1,8 +1,18 @@
 .message {
     display: flex;
+    align-items: start;
+    padding: 5px;
+    margin: 5px;
+}
+
+.unreadMessage {
+    background-color: rgba(245, 245, 246, 0.7);
 }
 
 .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-left: 10px;
 }
 
@@ -13,6 +23,12 @@
 
 .senderName {
     padding-right: 5px;
-    color: #1c88ea;
+    font-size: 0.8rem;
+    color: rgba(25, 143, 252, 0.9);
     font-weight: bold;
+}
+
+.time {
+    font-size: 0.8rem;
+    color: #616162;
 }

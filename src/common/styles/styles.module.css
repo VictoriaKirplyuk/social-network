@@ -1,6 +1,6 @@
 .block {
     padding: 7px;
-    border: 1px solid rgba(218, 218, 220, 70%);
+    border: 1px solid rgba(206, 206, 208, 0.7);
     border-radius: 5px;
     background-color: white;
     display: flex;

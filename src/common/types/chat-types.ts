@@ -1,8 +1,9 @@
 import { IMessageData } from './message-type';
+import { IUserContent } from './user-types';
 
 export interface IChatInfo {
   id: number;
-  targetProfile: ITargetProfile;
+  targetProfile: IUserContent;
   createAt: string;
   updateAt: string;
   messageAllow: boolean;
@@ -12,16 +13,9 @@ export interface IChatInfo {
 
 export interface IChat {
   id: number;
-  targetProfile: ITargetProfile;
+  targetProfile: IUserContent;
   createAt: string;
   updateAt: string;
   messageAllow: boolean;
   lastMessages: IMessageData[];
-}
-
-interface ITargetProfile {
-  username: string;
-  firstName: string;
-  middleName: string;
-  secondName: string;
 }

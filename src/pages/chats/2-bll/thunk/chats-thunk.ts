@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { changeStatus } from '../../../../app/2-bll/appReducer';
 import { RequestStatus } from '../../../../enums/app-enums';
 import { appErrorHandler } from '../../../../utils/app-error-handler/app-error-handler';
+import { setTargetProfile } from '../../../messages/2-bll/messagesReducer';
+import { getMessages } from '../../../messages/2-bll/thunk/messages-thunk';
 import { chatsAPI } from '../../3-dal/chatsAPI';
 import { setChats } from '../chatsReducer';
 
@@ -21,3 +23,16 @@ export const getChats = createAsyncThunk(
     }
   },
 );
+
+export const getChat = createAsyncThunk('chats/getChat', async (id: string, thunkAPI) => {
+  thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
+
+  try {
+    const response = await chatsAPI.getChat(+id);
+
+    thunkAPI.dispatch(setTargetProfile(response.targetProfile));
+    thunkAPI.dispatch(getMessages({ chatId: id }));
+  } catch (e) {
+    appErrorHandler(e, thunkAPI.dispatch);
+  }
+});

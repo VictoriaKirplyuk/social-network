@@ -6,6 +6,7 @@ import { authReducer } from '../pages/auth/registration/2-bll/authReducer';
 import { passwordReducer } from '../pages/auth/reset-password/2-bll/passwordReducer';
 import { chatsReducer } from '../pages/chats/2-bll/chatsReducer';
 import { friendsReducer } from '../pages/friends/2-bll/friendsReducer';
+import { messagesReducer } from '../pages/messages/2-bll/messagesReducer';
 import { profileReducer } from '../pages/profile/2-bll/profileReducer';
 import { usersReducer } from '../pages/users/2-bll/usersReducer';
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   friends: friendsReducer,
   chats: chatsReducer,
+  messages: messagesReducer,
   users: usersReducer,
 });
 

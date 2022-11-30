@@ -1,7 +1,7 @@
 export interface IResponseError {
-  code?: string;
+  code: string;
+  message: string;
   fields?: IFieldsResponseError[];
-  message?: string;
 }
 
 interface IFieldsResponseError {

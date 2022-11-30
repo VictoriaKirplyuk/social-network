@@ -33,6 +33,7 @@ const Chats = (): ReactElement => {
           chats.map(({ id, targetProfile, unreadMessages, lastMessage }) => (
             <ChatCard
               key={id}
+              chatId={id}
               firstName={targetProfile.firstName}
               middleName={targetProfile.middleName}
               secondName={targetProfile.secondName}

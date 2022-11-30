@@ -10,6 +10,9 @@ export const chatsAPI = {
   getChats(page: number = defaultPage, size: number = defaultSize) {
     return instance.get<ChatsResponse>(`chat?page=${page}&size=${size}`).then(response => response.data);
   },
+  getChat(id: number) {
+    return instance.get<ChatResponse>(`chat/${id}`).then(response => response.data);
+  },
   // создает или получает чат с указанным пользователя
   createChat(targetUsername: string) {
     return instance.post<ChatResponse>('chat', { targetUsername });

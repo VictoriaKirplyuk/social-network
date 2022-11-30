@@ -47,7 +47,7 @@ const Profile = (): ReactElement => {
       }
       dispatch(getProfileData());
     }
-  }, [dispatch, isLoggedIn, urlParams]);
+  }, [dispatch, isLoggedIn, urlParams.username]);
 
   if (!isLoggedIn) {
     return <Navigate to={RouteNames.LOGIN} />;
