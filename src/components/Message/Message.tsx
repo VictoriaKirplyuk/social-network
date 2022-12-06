@@ -9,14 +9,6 @@ import { formatMessageSendDate } from '../../utils/date-and-time-formatters/date
 
 import s from './Message.module.css';
 
-// createAt: "2022-11-24T15:18:52.622746Z"
-// id: 62
-// isRead: false
-// sender: "TARGET"
-// text: "10"
-// type: "TEXT"
-// updateAt: "2022-11-24T15:18:52.622759Z"
-
 interface IMessageProps {
   targetFirstName: string;
   message: IMessageData;
@@ -25,6 +17,8 @@ interface IMessageProps {
 
 const Message = ({ targetFirstName, message, isLastMessage }: IMessageProps): ReactElement => {
   const lastMessageElementRef = useRef<null | HTMLDivElement>(null);
+
+  const messageStyle: string = message.isRead ? s.message : `${s.message} ${s.unreadMessage}`;
 
   const showMessageByType = (): string => {
     if (message.type === MessageType.IMAGE) return 'Image~';
@@ -38,7 +32,7 @@ const Message = ({ targetFirstName, message, isLastMessage }: IMessageProps): Re
   }, []);
 
   return (
-    <div className={`${s.message} ${s.unreadMessage}`} ref={isLastMessage ? lastMessageElementRef : null}>
+    <div className={messageStyle} ref={isLastMessage ? lastMessageElementRef : null}>
       <div>
         <Avatar size={38} icon={<UserOutlined />} />
       </div>
@@ -47,7 +41,7 @@ const Message = ({ targetFirstName, message, isLastMessage }: IMessageProps): Re
           <div className={s.senderName}>{targetFirstName}</div>
           <div className={s.time}>{formatMessageSendDate(message.createAt)}</div>
         </div>
-        <div>{showMessageByType()}</div>
+        <div className={s.messageText}>{showMessageByType()}</div>
       </div>
     </div>
   );

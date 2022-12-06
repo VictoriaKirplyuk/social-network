@@ -35,6 +35,11 @@ const slice = createSlice({
     setTargetProfile: (state, action: PayloadAction<IUserContent>) => {
       state.targetProfile = action.payload;
     },
+    makeMessageRead: state => {
+      state.messageList.content = state.messageList.content.map(message =>
+        !message.isRead ? { ...message, isRead: true } : message,
+      );
+    },
     clearMessage: state => {
       state.messageList = messageList;
       state.targetProfile = {} as IUserContent;
@@ -42,6 +47,6 @@ const slice = createSlice({
   },
 });
 
-export const { setMessages, setTargetProfile, clearMessage } = slice.actions;
+export const { setMessages, setTargetProfile, makeMessageRead, clearMessage } = slice.actions;
 
 export const messagesReducer = slice.reducer;
