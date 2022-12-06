@@ -1,9 +1,9 @@
 .message {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     padding: 5px;
     margin: 5px;
-    transition: 3ms;
+    transition-delay: 1s;
 }
 
 .unreadMessage {
@@ -15,6 +15,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 10px;
+    width: 93%;
 }
 
 .description {
@@ -27,6 +28,10 @@
     font-size: 0.8rem;
     color: rgba(24, 125, 218, 0.9);
     font-weight: bold;
+}
+
+.messageText {
+    word-wrap:break-word;
 }
 
 .time {

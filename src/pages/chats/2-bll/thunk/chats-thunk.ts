@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { changeStatus } from '../../../../app/2-bll/appReducer';
 import { RequestStatus } from '../../../../enums/app-enums';
 import { appErrorHandler } from '../../../../utils/app-error-handler/app-error-handler';
-import { setTargetProfile } from '../../../messages/2-bll/messagesReducer';
+import { makeMessageRead, setTargetProfile } from '../../../messages/2-bll/messagesReducer';
 import { getMessages } from '../../../messages/2-bll/thunk/messages-thunk';
 import { chatsAPI } from '../../3-dal/chatsAPI';
 import { setChats } from '../chatsReducer';
@@ -32,6 +32,19 @@ export const getChat = createAsyncThunk('chats/getChat', async (id: string, thun
 
     thunkAPI.dispatch(setTargetProfile(response.targetProfile));
     thunkAPI.dispatch(getMessages({ chatId: id }));
+  } catch (e) {
+    appErrorHandler(e, thunkAPI.dispatch);
+  }
+});
+
+export const markChatRead = createAsyncThunk('chats/markChatRead', async (id: string, thunkAPI) => {
+  thunkAPI.dispatch(changeStatus({ status: RequestStatus.LOADING }));
+
+  try {
+    await chatsAPI.markRead(+id);
+
+    thunkAPI.dispatch(makeMessageRead());
+    thunkAPI.dispatch(changeStatus({ status: RequestStatus.SUCCEEDED }));
   } catch (e) {
     appErrorHandler(e, thunkAPI.dispatch);
   }

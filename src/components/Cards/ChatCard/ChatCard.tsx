@@ -38,8 +38,9 @@ const ChatCard = ({
   sendingDate,
 }: IChatCardProps): ReactElement => {
   const senderName: string = concatUsername(firstName, middleName, secondName);
-  const readingStyle: string = !isRead ? `${s.unreadChat}` : '';
   const pathToMessages: string = RouteNames.MESSAGES.replace(':chatId', chatId.toString());
+  const readingChatStyle: string = !isRead ? `${s.unreadChat}` : '';
+  const unreadMessagesStyle: string = !isRead ? s.unreadMessages : '';
 
   const showMessageByType = (): string => {
     if (messageType === MessageType.IMAGE) return 'Image~';
@@ -50,7 +51,7 @@ const ChatCard = ({
 
   return (
     <NavLink to={pathToMessages}>
-      <div className={`${s.chat} ${readingStyle}`}>
+      <div className={`${s.chat} ${readingChatStyle}`}>
         <Avatar size={55} icon={<UserOutlined />} />
         <div className={s.chatContent}>
           <div className={s.info}>
@@ -58,7 +59,7 @@ const ChatCard = ({
             <div className={gS.infoField}>{showMessageByType()}</div>
           </div>
           <div className={s.date}>{formatMessageSendDate(sendingDate)}</div>
-          <div className={s.unreadMessages}>{unreadMessages}</div>
+          <div className={unreadMessagesStyle}>{!!unreadMessages && unreadMessages}</div>
         </div>
       </div>
     </NavLink>

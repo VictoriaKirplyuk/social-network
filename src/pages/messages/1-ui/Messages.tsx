@@ -10,7 +10,7 @@ import { RequestStatus } from '../../../enums/app-enums';
 import { RouteNames } from '../../../enums/router-enums';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import { concatUsername } from '../../../utils/concatenation/concatenation';
-import { getChat } from '../../chats/2-bll/thunk/chats-thunk';
+import { getChat, markChatRead } from '../../chats/2-bll/thunk/chats-thunk';
 import pS from '../../Pages.module.css';
 import { clearMessage } from '../2-bll/messagesReducer';
 import { getMessages } from '../2-bll/thunk/messages-thunk';
@@ -27,11 +27,12 @@ const Messages = (): ReactElement => {
   const targetProfile = useAppSelector(state => state.messages.targetProfile);
   const hasNextMessages = useAppSelector(state => state.messages.messageList.hasNext);
   const totalElements = useAppSelector(state => state.messages.messageList.totalElements);
+  const currentMessagePage = useAppSelector(state => state.messages.messageList.number);
 
   const messageListRef = useRef<null | HTMLDivElement>(null);
 
   const [isFetchingMessages, setIsFetchingMessages] = useState<boolean>(false);
-  const currentMessagePage = useAppSelector(state => state.messages.messageList.number);
+
   const targetFullUsername: string = targetProfile.firstName
     ? concatUsername(targetProfile.firstName, targetProfile.middleName, targetProfile.secondName)
     : '...';
@@ -48,9 +49,7 @@ const Messages = (): ReactElement => {
       ? messageListRef.current?.scrollTop < scrollBorderY
       : false;
 
-    if (isFetchingMessages && messages.length < totalElements) {
-      setIsFetchingMessages(true);
-    }
+    if (isFetchingMessages && messages.length < totalElements) setIsFetchingMessages(true);
   }, [messages.length, totalElements, isLoading]);
 
   useEffect(() => {
@@ -72,6 +71,12 @@ const Messages = (): ReactElement => {
       dispatch(clearMessage());
     };
   }, [dispatch, urlParams]);
+
+  useEffect(() => {
+    const { chatId } = urlParams;
+
+    if (messages.length && chatId) dispatch(markChatRead(chatId));
+  }, [dispatch, messages.length, urlParams]);
 
   useEffect(() => {
     const { chatId } = urlParams;
