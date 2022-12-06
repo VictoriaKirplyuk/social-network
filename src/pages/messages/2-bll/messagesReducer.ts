@@ -25,14 +25,23 @@ const slice = createSlice({
   initialState,
   reducers: {
     setMessages: (state, action: PayloadAction<IPageData<IMessageData>>) => {
-      state.messageList = { ...action.payload, content: action.payload.content.reverse() };
+      state.messageList = {
+        ...action.payload,
+        content: !state.messageList.content.length
+          ? action.payload.content.reverse()
+          : [...action.payload.content.reverse(), ...state.messageList.content],
+      };
     },
     setTargetProfile: (state, action: PayloadAction<IUserContent>) => {
       state.targetProfile = action.payload;
     },
+    clearMessage: state => {
+      state.messageList = messageList;
+      state.targetProfile = {} as IUserContent;
+    },
   },
 });
 
-export const { setMessages, setTargetProfile } = slice.actions;
+export const { setMessages, setTargetProfile, clearMessage } = slice.actions;
 
 export const messagesReducer = slice.reducer;

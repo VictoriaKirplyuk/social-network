@@ -1,40 +1,81 @@
 .messagesBlock {
-    height: 39rem;
+    height: 41rem;
     padding: 0;
+    position: relative;
+}
+
+.headerBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7%;
+    border-bottom: 1px solid rgba(206, 206, 208, 0.7);
+    background-color: #f4f7fa;
+    border-radius: 5px 5px 0 0;
 }
 
 .messageList {
     width: 100%;
-    height: 90%;
+    height: 100%;
     padding: 10px;
     overflow-y: scroll;
 }
 
 .messageList::-webkit-scrollbar {
-    width: 0;
+    /*width: 0;*/
 }
 
 .messageSendBlock {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     width: 100%;
-    min-height: 10%;
+    max-height: 20%;
     border-top: 1px solid rgba(206, 206, 208, 0.7);
     background-color: #f4f7fa;
     border-radius: 0 0 5px 5px;
+}
+
+.sendMessageFieldWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 100%;
 }
 
 .sendMessageField {
     white-space: pre-wrap;
     word-wrap: break-word;
     resize: none;
-    padding: 5px;
-    width: 75%;
+    padding: 0.4rem 2.5rem 0.4rem 0.4rem;
+    width: 100%;
+    min-height: 10%;
     border-radius: 10px;
     border: 1px solid rgba(206, 206, 208, 0.7);
 }
 
 .sendMessageField::-webkit-scrollbar {
     width: 0;
+}
+
+.sendBtn {
+    position: absolute;
+    cursor: pointer;
+    color: #616162;
+    font-size: 1.3rem;
+    top: 1.2rem;
+    right: 2rem;
+}
+
+.sendBtn:active {
+    color: black;
+}
+
+.preloader {
+    position: absolute;
+    left: 90%;
+    top: 10%
 }

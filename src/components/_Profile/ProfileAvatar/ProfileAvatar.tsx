@@ -8,7 +8,7 @@ interface IProfileAvatarProps {
 }
 
 const ProfileAvatar = ({ avatar }: IProfileAvatarProps): ReactElement => {
-  return <Avatar size={140} icon={avatar || <UserOutlined />} />;
+  return <Avatar size={130} icon={avatar || <UserOutlined />} />;
 };
 
 export default ProfileAvatar;

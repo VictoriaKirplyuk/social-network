@@ -51,13 +51,15 @@ const ChatCard = ({
   return (
     <NavLink to={pathToMessages}>
       <div className={`${s.chat} ${readingStyle}`}>
-        <Avatar size={70} icon={<UserOutlined />} />
-        <div className={s.info}>
-          <div className={gS.userInfoField}>{senderName}</div>
-          <div className={gS.infoField}>{showMessageByType()}</div>
+        <Avatar size={55} icon={<UserOutlined />} />
+        <div className={s.chatContent}>
+          <div className={s.info}>
+            <div className={gS.userInfoField}>{senderName}</div>
+            <div className={gS.infoField}>{showMessageByType()}</div>
+          </div>
+          <div className={s.date}>{formatMessageSendDate(sendingDate)}</div>
+          <div className={s.unreadMessages}>{unreadMessages}</div>
         </div>
-        <div className={s.date}>{formatMessageSendDate(sendingDate)}</div>
-        <div className={s.unreadMessages}>{unreadMessages}</div>
       </div>
     </NavLink>
   );

@@ -5,10 +5,11 @@ import { Spin } from 'antd';
 
 interface IPreloaderProps {
   size?: 'small' | 'default' | 'large' | undefined;
+  style?: string;
 }
 
-const Preloader = ({ size }: IPreloaderProps): ReactElement => {
-  return <Spin indicator={<LoadingOutlined spin />} size={size} />;
+const Preloader = ({ size, style }: IPreloaderProps): ReactElement => {
+  return <Spin className={style && style} indicator={<LoadingOutlined spin />} size={size} />;
 };
 
 export default Preloader;

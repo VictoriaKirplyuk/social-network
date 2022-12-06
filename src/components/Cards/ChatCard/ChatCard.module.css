@@ -1,9 +1,14 @@
 .chat {
     display: flex;
+    align-items: center;
     width: 100%;
-    padding: 7px;
+    padding: 5px;
     position: relative;
     border-bottom: 1px solid rgba(227, 227, 229, 0.7);
+}
+
+.chatContent {
+    width: 40%;
 }
 
 .chat:hover {
@@ -22,11 +27,14 @@
 .date {
     position: absolute;
     right: 1rem;
+    top: 0.2rem;
     color: #616162;
 }
 
 .unreadMessages {
     position: absolute;
+    top: 0.6rem;
+    left: 2.4rem;
     display: flex;
     justify-content: center;
     padding: 2px;

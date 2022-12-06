@@ -3,6 +3,7 @@
     align-items: start;
     padding: 5px;
     margin: 5px;
+    transition: 3ms;
 }
 
 .unreadMessage {
@@ -24,7 +25,7 @@
 .senderName {
     padding-right: 5px;
     font-size: 0.8rem;
-    color: rgba(25, 143, 252, 0.9);
+    color: rgba(24, 125, 218, 0.9);
     font-weight: bold;
 }
 

@@ -24,7 +24,7 @@ interface IMessageProps {
 }
 
 const Message = ({ targetFirstName, message, isLastMessage }: IMessageProps): ReactElement => {
-  const lastMessageElement = useRef<null | HTMLDivElement>(null);
+  const lastMessageElementRef = useRef<null | HTMLDivElement>(null);
 
   const showMessageByType = (): string => {
     if (message.type === MessageType.IMAGE) return 'Image~';
@@ -34,11 +34,11 @@ const Message = ({ targetFirstName, message, isLastMessage }: IMessageProps): Re
   };
 
   useLayoutEffect(() => {
-    lastMessageElement.current?.scrollIntoView();
+    lastMessageElementRef.current?.scrollIntoView();
   }, []);
 
   return (
-    <div className={`${s.message} ${s.unreadMessage}`} ref={isLastMessage ? lastMessageElement : null}>
+    <div className={`${s.message} ${s.unreadMessage}`} ref={isLastMessage ? lastMessageElementRef : null}>
       <div>
         <Avatar size={38} icon={<UserOutlined />} />
       </div>
