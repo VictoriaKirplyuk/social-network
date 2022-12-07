@@ -10,6 +10,7 @@ import { RequestStatus } from '../../../enums/app-enums';
 import { RouteNames } from '../../../enums/router-enums';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import { concatUsername } from '../../../utils/concatenation/concatenation';
+import { addHandler } from '../../../utils/ws/ws';
 import { getChat, markChatRead } from '../../chats/2-bll/thunk/chats-thunk';
 import pS from '../../Pages.module.css';
 import { clearMessage } from '../2-bll/messagesReducer';
@@ -86,6 +87,12 @@ const Messages = (): ReactElement => {
       setIsFetchingMessages(false);
     }
   }, [dispatch, urlParams, hasNextMessages, isFetchingMessages, currentMessagePage]);
+
+  useEffect(() => {
+    addHandler((data: any) => {
+      console.log(data);
+    });
+  }, []);
 
   if (!isLoggedIn) {
     return <Navigate to={RouteNames.LOGIN} />;

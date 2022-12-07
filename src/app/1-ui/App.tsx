@@ -8,8 +8,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import Pages from '../../pages/Pages';
 import { initializeApp } from '../../utils/initialize-and-logout-app/initialize-app';
 import { logout } from '../../utils/initialize-and-logout-app/logout';
+import { connect, disconnect } from '../../utils/ws/ws';
 
 const { Header, Content, Footer } = Layout;
+
+connect();
 
 const App = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -22,6 +25,10 @@ const App = (): ReactElement => {
 
   useEffect(() => {
     initializeApp(dispatch);
+
+    return () => {
+      disconnect();
+    };
   }, [dispatch]);
 
   return (
