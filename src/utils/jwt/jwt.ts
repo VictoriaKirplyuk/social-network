@@ -1,6 +1,8 @@
 import jwtDecode from 'jwt-decode';
 import moment, { Moment } from 'moment';
 
+import { Nullable } from '../../common/types/nullable';
+
 interface IJwtToken {
   sub: string;
   auth: string;
@@ -11,6 +13,9 @@ interface IJwtInfo {
   exp: string;
   expDate: string;
 }
+export const getJwtToken = (): Nullable<string> => {
+  return localStorage.getItem('jwtToken');
+};
 
 const getJwtTokenExpDate = (exp: string): string => {
   return moment.unix(+exp).format('MM-DD-YYYY HH:mm');
@@ -31,7 +36,7 @@ export const registerJwtToken = (jwtToken: string): void => {
 };
 
 export const isJwtTokenValid = (): boolean | null => {
-  const jwtInfo: string | null = localStorage.getItem('jwtInfo');
+  const jwtInfo: Nullable<string> = localStorage.getItem('jwtInfo');
 
   if (jwtInfo) {
     const parseJwtInfo: IJwtInfo = JSON.parse(jwtInfo);

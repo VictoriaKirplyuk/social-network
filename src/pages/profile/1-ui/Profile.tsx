@@ -30,7 +30,7 @@ const Profile = (): ReactElement => {
     education,
     relationshipStatus,
     workplace,
-  } = useAppSelector(state => state.profile);
+  } = useAppSelector(state => state.profile.currentProfile);
 
   const [isShowDetails, setIsShowDetails] = useState<boolean>(false);
 

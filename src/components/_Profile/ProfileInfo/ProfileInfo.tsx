@@ -42,7 +42,7 @@ const ProfileInfo = ({
 
   return (
     <div className={s.profileInfo}>
-      <ProfileAvatar avatar={avatar.mimeType} />
+      <ProfileAvatar avatar={avatar?.mimeType} />
       <div className={s.generalProfileInfo}>
         <div className={s.nameGroup}>
           <span className={`${gS.userInfoField} ${gS.importantInfoField}`}>{fullUsername}</span>
