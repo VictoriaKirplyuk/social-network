@@ -59,7 +59,7 @@ const ChatCard = ({
             <div className={gS.infoField}>{showMessageByType()}</div>
           </div>
           <div className={s.date}>{formatMessageSendDate(sendingDate)}</div>
-          <div className={unreadMessagesStyle}>{!!unreadMessages && unreadMessages}</div>
+          {!!unreadMessages && <div className={unreadMessagesStyle}>{unreadMessages}</div>}
         </div>
       </div>
     </NavLink>

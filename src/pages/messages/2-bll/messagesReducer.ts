@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IMessageData } from '../../../common/types/message-type';
 import { IPageData } from '../../../common/types/page-types';
 import { IUserContent } from '../../../common/types/user-types';
+import { SenderType } from '../../../enums/message-enums';
 
 import { IMessagesState } from './types/types';
 
@@ -24,6 +25,9 @@ const slice = createSlice({
   name: 'messages',
   initialState,
   reducers: {
+    setTargetProfile: (state, action: PayloadAction<IUserContent>) => {
+      state.targetProfile = action.payload;
+    },
     setMessages: (state, action: PayloadAction<IPageData<IMessageData>>) => {
       state.messageList = {
         ...action.payload,
@@ -32,21 +36,24 @@ const slice = createSlice({
           : [...action.payload.content.reverse(), ...state.messageList.content],
       };
     },
-    setTargetProfile: (state, action: PayloadAction<IUserContent>) => {
-      state.targetProfile = action.payload;
+    setMessage: (state, action: PayloadAction<IMessageData>) => {
+      state.messageList.content.push(action.payload);
     },
-    makeMessageRead: state => {
+    updateMessage: (state, action: PayloadAction<IMessageData>) => {
+      state.messageList.content.forEach(message => (message.id === action.payload.id ? action.payload : message));
+    },
+    makeMessagesRead: state => {
       state.messageList.content = state.messageList.content.map(message =>
-        !message.isRead ? { ...message, isRead: true } : message,
+        !message.isRead && message.sender === SenderType.TARGET ? { ...message, isRead: true } : message,
       );
     },
-    clearMessage: state => {
+    clearMessages: state => {
       state.messageList = messageList;
       state.targetProfile = {} as IUserContent;
     },
   },
 });
 
-export const { setMessages, setTargetProfile, makeMessageRead, clearMessage } = slice.actions;
+export const { setTargetProfile, setMessages, setMessage, makeMessagesRead, clearMessages } = slice.actions;
 
 export const messagesReducer = slice.reducer;

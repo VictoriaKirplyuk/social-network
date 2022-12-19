@@ -1,16 +1,11 @@
 import SockJS from 'sockjs-client';
 import Stomp from 'webstomp-client';
 
+import { IMessageEvent } from '../../common/types/message-type';
 import { Nullable } from '../../common/types/nullable';
 import { getJwtToken } from '../jwt/jwt';
 
-const handlers: Function[] = [];
-
 let stompClient: Nullable<any> = null;
-
-export const addHandler = (handler: Function): void => {
-  handlers.push(handler);
-};
 
 export const connect = (): void => {
   const socket = new SockJS(
@@ -24,9 +19,8 @@ export const connect = (): void => {
     () => {
       console.log('Connected');
 
-      stompClient?.subscribe('/topic/messages', (messages: any) => {
-        // handlers.forEach(handler => handler(JSON.parse(messages)));
-        console.log(JSON.parse(messages));
+      stompClient?.subscribe('/topic/messages', (message: IMessageEvent) => {
+        console.log(message); // JSON.parse()  await JSON
       });
     },
     (error: any) => {
@@ -37,7 +31,6 @@ export const connect = (): void => {
 
 export const disconnect = (): void => {
   if (stompClient !== null) stompClient.disconnect();
-  console.log('Disconnected');
 };
 
 export const sendMessage = (message: any): void => {

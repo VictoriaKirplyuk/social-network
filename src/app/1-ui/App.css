@@ -1,7 +1,7 @@
 @import '~antd/dist/antd.css';
 
 .app {
-    background-color: #eff2f6;
+    background: #eff2f6;
     width: 100vw;
     min-height: 100vh;
 }

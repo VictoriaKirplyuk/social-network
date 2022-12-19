@@ -1,5 +1,6 @@
 import { instance } from '../../../app/3-dal/instance';
 import { IResponseError } from '../../../common/types/api-types/error-types';
+import { MessageType } from '../../../enums/message-enums';
 
 import { MessageResponse, MessagesResponse } from './types/types';
 
@@ -12,8 +13,13 @@ export const messageAPI = {
       .get<MessagesResponse>(`chat/${chatId}/message?page=${page}&size=${size}&sort=${sort}`)
       .then(response => response.data);
   },
-  createMessage(chatId: number) {
-    return instance.post(`chat/${chatId}/message`, {});
+  createTextMessage(chatId: number, type: MessageType.TEXT, text: string) {
+    return instance.post<MessageResponse>(`chat/${chatId}/message`, { type, text }).then(response => response.data);
+  },
+  createImageMessage(chatId: number, type: MessageType.IMAGE, image: string) {
+    return instance
+      .post<MessageResponse>(`chat/${chatId}/message/image`, { type, image })
+      .then(response => response.data);
   },
   changeMessage(chatId: number, messageId: number, text: string) {
     return instance

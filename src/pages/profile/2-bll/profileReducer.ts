@@ -1,47 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IProfileData } from '../../../common/types/profile-types';
-import { IAvatar } from '../../../common/types/user-types';
-import { ProfileAttitude } from '../../../enums/profile-enums';
 
-const avatarState: IAvatar = {
-  mimeType: '',
-  height: 0,
-  width: 0,
-  dataSize: '',
-  createAt: '',
-};
+import { IProfileState, ITargetProfileData } from './types/types';
 
-const initialState: IProfileData = {
-  username: '',
-  avatar: avatarState,
-  firstName: '',
-  middleName: '',
-  secondName: '',
-  gender: '',
-  birthDate: '',
-  overview: null,
-  relationshipStatus: null,
-  workplace: null,
-  education: null,
-  citizenship: null,
-  registrationAddress: null,
-  residenceAddress: null,
-  createAt: '',
-  updateAt: '',
-  attitude: ProfileAttitude.NONE,
+const initialState: IProfileState = {
+  currentProfile: {} as IProfileData,
+  targetProfile: {} as ITargetProfileData,
 };
 
 const slice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    setProfileData: (state, action: PayloadAction<IProfileData>) => {
-      return { ...action.payload };
+    setCurrentProfile: (state, action: PayloadAction<IProfileData>) => {
+      state.currentProfile = action.payload;
+    },
+    setTargetProfileInfo: (state, action: PayloadAction<IProfileData>) => {
+      const { username, firstName, middleName, secondName } = action.payload;
+
+      state.targetProfile = { username, firstName, middleName, secondName };
     },
   },
 });
 
-export const { setProfileData } = slice.actions;
+export const { setCurrentProfile, setTargetProfileInfo } = slice.actions;
 
 export const profileReducer = slice.reducer;
